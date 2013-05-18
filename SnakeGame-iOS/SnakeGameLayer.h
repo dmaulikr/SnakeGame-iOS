@@ -13,6 +13,11 @@
 // HelloWorldLayer
 @interface SnakeGameLayer : CCLayerColor
 {
+    float startX, startY;
+	NSString *direction;
+	CGPoint snake[30];
+	int lengthOfSnake;
+	CGPoint items[20];;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
@@ -20,5 +25,9 @@
 
 - (void) drawGrid;
 - (void) drawSnake;
+- (void) initializeSnakeArray;
+- (void) initializeItemsArray;
+- (void) updateSnakeArray;
+void ccFilledRect(CGPoint v1, CGPoint v2);
 
 @end
