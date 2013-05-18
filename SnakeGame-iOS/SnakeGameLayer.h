@@ -11,11 +11,14 @@
 #import "cocos2d.h"
 
 // HelloWorldLayer
-@interface SnakeGameLayer : CCLayer
+@interface SnakeGameLayer : CCLayerColor
 {
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
+
+- (void) drawGrid;
+- (void) drawSnake;
 
 @end
