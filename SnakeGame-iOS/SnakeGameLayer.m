@@ -33,7 +33,7 @@
 {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
-	if( (self=[super initWithColor:ccc4(255, 255, 255, 255)]))
+	if( (self=[super initWithColor:ccc4(255, 255, 255, 255)]) )
     {
         [self resetGame];
         [self setIsTouchEnabled:YES];
@@ -54,6 +54,7 @@
     startY = 20 * 2;
     direction = @"Forward";
     lengthOfSnake = 4;
+    numberOfItems = 15;
     [self initializeSnakeArray];
     [self initializeItemsArray];
     [self schedule:@selector(refresh:) interval:0.175];
@@ -81,6 +82,16 @@
             [self unschedule:@selector(refresh:)];
             alert.message = @"Self-intersection detected!";
             [alert show];
+        }
+    }
+    for (int i = 0; i < numberOfItems; i++)
+    {
+        if (snake[0].x == items[i].x && snake[0].y == items[i].y)
+        {
+            NSLog(@"Item collected!");
+            snake[lengthOfSnake] = CGPointMake(-20.0, -20.0);
+            lengthOfSnake++;
+            items[i] = CGPointMake(-20.0, -20.0);
         }
     }
 }
@@ -113,6 +124,17 @@
     }
 }
 
+- (void) drawItems
+{
+    glColor4f(1.0, 0.0, 0.0, 1.0);
+    for (int i = 0; i < numberOfItems; i++)
+    {
+        CGPoint startPoint = CGPointMake(items[i].x, items[i].y);
+        CGPoint endPoint = CGPointMake(items[i].x + 20, items[i].y - 20);
+        ccFilledRect(startPoint, endPoint);
+    }
+}
+
 // Drawing the graph and the axes
 - (void) draw
 {
@@ -129,6 +151,7 @@
     }
     [self drawGrid];
     [self drawSnake];
+    [self drawItems];
     // Tell OpenGL to reset the color (to avoid scene transition tint effect)
     glColor4f(1.0, 1.0, 1.0, 1.0);
     // Tell OpenGL that you have finished drawing
@@ -177,7 +200,29 @@
 
 - (void) initializeItemsArray
 {
-    
+    for (int i = 0; i < numberOfItems; i++)
+    {
+        CGPoint position;
+        BOOL validPosition = NO;
+        while (!validPosition)
+        {
+            int x = arc4random() % 16;
+            int y = arc4random() % 24;
+            position = CGPointMake(20.0 * x, 20.0 * y);
+            for (int j = 0; j < lengthOfSnake; j++)
+            {
+                if (position.x == snake[j].x && position.y == snake[j].y)
+                {
+                    continue;
+                }
+                else if (j == lengthOfSnake-1)
+                {
+                    items[i] = position;
+                    validPosition = YES;
+                }
+            }
+        }
+    }
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

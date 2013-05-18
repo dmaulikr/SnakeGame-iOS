@@ -17,6 +17,7 @@
 	NSString *direction;
 	CGPoint snake[30];
 	int lengthOfSnake;
+    int numberOfItems;
 	CGPoint items[20];;
     UIAlertView *alert;
 }
@@ -27,6 +28,7 @@
 - (void) resetGame;
 - (void) drawGrid;
 - (void) drawSnake;
+- (void) drawItems;
 - (void) initializeSnakeArray;
 - (void) initializeItemsArray;
 - (void) updateSnakeArray;
