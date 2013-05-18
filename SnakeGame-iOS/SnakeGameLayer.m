@@ -33,7 +33,7 @@
 {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
-	if( (self=[super initWithColor:ccc4(255, 255, 255, 255)]) )
+	if( (self=[super init]) )
     {
         [self resetGame];
         [self setIsTouchEnabled:YES];
@@ -96,10 +96,18 @@
     }
 }
 
+- (void) drawBackground
+{
+    glColor4f(0.0, 0.0, 0.5, 1.0);
+    CGPoint startPoint = CGPointMake(0.0, 480.0);
+    CGPoint endPoint = CGPointMake(320.0, 0.0);
+    ccFilledRect(startPoint, endPoint);
+}
+
 - (void) drawGrid
 {
     // Tell OpenGL which color to use
-    glColor4f(0.3, 0.3, 0.3, 1.0);
+    glColor4f(0.5, 0.5, 0.5, 1.0);
     for (int i = 0; i < 16; i++)
     {
         float x = 20 * i;
@@ -149,6 +157,7 @@
     {
         glLineWidth(2.0f);
     }
+    [self drawBackground];
     [self drawGrid];
     [self drawSnake];
     [self drawItems];

@@ -11,7 +11,7 @@
 #import "cocos2d.h"
 
 // HelloWorldLayer
-@interface SnakeGameLayer : CCLayerColor <UIAlertViewDelegate>
+@interface SnakeGameLayer : CCLayer <UIAlertViewDelegate>
 {
     float startX, startY;
 	NSString *direction;
@@ -26,6 +26,7 @@
 +(CCScene *) scene;
 
 - (void) resetGame;
+- (void) drawBackground;
 - (void) drawGrid;
 - (void) drawSnake;
 - (void) drawItems;
