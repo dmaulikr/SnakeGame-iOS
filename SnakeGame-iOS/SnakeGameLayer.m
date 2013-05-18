@@ -35,15 +35,28 @@
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super initWithColor:ccc4(255, 255, 255, 255)]))
     {
-        startX = 20 * 5;
-		startY = 20 * 2;
-		direction = @"Forward";
-		lengthOfSnake = 4;
-		[self initializeSnakeArray];
-        [self initializeItemsArray];
-        [self schedule:@selector(refresh:) interval:0.5];
+        [self resetGame];
+        [self setIsTouchEnabled:YES];
+        alert = [[UIAlertView alloc] initWithTitle:@"Snake Game" message:nil
+                                          delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	}
 	return self;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self resetGame];
+}
+
+- (void) resetGame
+{
+    startX = 20 * 5;
+    startY = 20 * 2;
+    direction = @"Forward";
+    lengthOfSnake = 4;
+    [self initializeSnakeArray];
+    [self initializeItemsArray];
+    [self schedule:@selector(refresh:) interval:0.175];
 }
 
 - (void) refresh: (ccTime)t
@@ -51,20 +64,23 @@
     [self updateSnakeArray];
     if (snake[0].x == -20 || snake[0].x == 320)
     {
-        NSLog(@"Boundary reached!");
         [self unschedule:@selector(refresh:)];
+        alert.message = @"Boundary Reached!";
+        [alert show];
     }
     else if (snake[0].y == 0 || snake[0].y == 480)
     {
-        NSLog(@"Boundary reached!");
         [self unschedule:@selector(refresh:)];
+        alert.message = @"Boundary Reached!";
+        [alert show];
     }
     for (int i = 1; i < lengthOfSnake; i++)
     {
         if (snake[0].x == snake[i].x && snake[0].y == snake[i].y)
         {
-            NSLog(@"Self-intersection detected!");
             [self unschedule:@selector(refresh:)];
+            alert.message = @"Self-intersection detected!";
+            [alert show];
         }
     }
 }
@@ -162,6 +178,37 @@
 - (void) initializeItemsArray
 {
     
+}
+
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+    // Choose one of the touches to work with
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [self convertTouchToNodeSpace:touch];
+    // Update direction of snake motion based on touch location
+    if ([direction isEqualToString:@"Forward"] || [direction isEqualToString:@"Backward"])
+    {
+        if (location.y > snake[0].y)
+        {
+            direction = @"Upward";
+        }
+        else if (location.y < snake[0].y - 20.0)
+        {
+            direction = @"Downward";
+        }
+    }
+    else if ([direction isEqualToString:@"Upward"] || [direction isEqualToString:@"Downward"])
+    {
+        if (location.x > snake[0].x + 20.0)
+        {
+            direction = @"Forward";
+        }
+        else if (location.x < snake[0].x)
+        {
+            direction = @"Backward";
+        }
+    }
 }
 
 // Using this custom function from the website -> http://www.cocos2d-iphone.org/forum/topic/7511
