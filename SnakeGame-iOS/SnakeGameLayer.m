@@ -35,6 +35,7 @@
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init]) )
     {
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"theme.wav"];
         [self resetGame];
         [self setIsTouchEnabled:YES];
         alert = [[UIAlertView alloc] initWithTitle:@"Snake Game" message:nil
@@ -45,6 +46,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"button.wav"];
     [self resetGame];
 }
 
@@ -65,12 +67,14 @@
     [self updateSnakeArray];
     if (snake[0].x == -20 || snake[0].x == 320)
     {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
         [self unschedule:@selector(refresh:)];
         alert.message = @"Boundary Reached!";
         [alert show];
     }
     else if (snake[0].y == 0 || snake[0].y == 480)
     {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
         [self unschedule:@selector(refresh:)];
         alert.message = @"Boundary Reached!";
         [alert show];
@@ -79,6 +83,7 @@
     {
         if (snake[0].x == snake[i].x && snake[0].y == snake[i].y)
         {
+            [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
             [self unschedule:@selector(refresh:)];
             alert.message = @"Self-intersection detected!";
             [alert show];
@@ -89,6 +94,7 @@
         if (snake[0].x == items[i].x && snake[0].y == items[i].y)
         {
             NSLog(@"Item collected!");
+            [[SimpleAudioEngine sharedEngine] playEffect:@"collect.wav"];
             snake[lengthOfSnake] = CGPointMake(-20.0, -20.0);
             lengthOfSnake++;
             items[i] = CGPointMake(-20.0, -20.0);
