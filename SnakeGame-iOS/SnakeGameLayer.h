@@ -21,6 +21,7 @@
     int numberOfItems;
 	CGPoint items[20];;
     UIAlertView *alert;
+    BOOL gamePaused;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

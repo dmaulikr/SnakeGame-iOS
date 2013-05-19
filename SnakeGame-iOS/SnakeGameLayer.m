@@ -59,7 +59,7 @@
     numberOfItems = 15;
     [self initializeSnakeArray];
     [self initializeItemsArray];
-    [self schedule:@selector(refresh:) interval:0.175];
+    gamePaused = YES;
 }
 
 - (void) refresh: (ccTime)t
@@ -244,7 +244,12 @@
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    
+    if (gamePaused)
+    {
+        gamePaused = NO;
+        [self schedule:@selector(refresh:) interval:0.175];
+        return;
+    }
     // Choose one of the touches to work with
     UITouch *touch = [touches anyObject];
     CGPoint location = [self convertTouchToNodeSpace:touch];
