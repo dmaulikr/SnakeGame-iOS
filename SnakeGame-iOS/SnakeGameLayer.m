@@ -146,6 +146,8 @@
         CGPoint endPoint = CGPointMake(items[i].x + 20, items[i].y - 20);
         glColor4f(1.0, 0.0, 0.0, 1.0);
         ccDrawSolidRect(startPoint, endPoint);
+        glColor4f(1.0, 1.0, 1.0, 1.0);
+        ccDrawRect(startPoint, endPoint);
     }
 }
 
@@ -165,8 +167,8 @@
     }
     [self drawBackground];
     [self drawSnake];
-    [self drawItems];
     [self drawGrid];
+    [self drawItems];
     // Tell OpenGL to reset the color (to avoid scene transition tint effect)
     glColor4f(1.0, 1.0, 1.0, 1.0);
     // Tell OpenGL that you have finished drawing
