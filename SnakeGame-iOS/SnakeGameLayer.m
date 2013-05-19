@@ -129,11 +129,11 @@
 - (void) drawSnake
 {
     // Tell OpenGL which color to use
-    glColor4f(1.0, 1.0, 0.0, 1.0);
     for (int i = 0; i < lengthOfSnake; i++)
     {
         CGPoint startPoint = CGPointMake(snake[i].x, snake[i].y);
         CGPoint endPoint = CGPointMake(snake[i].x + 20, snake[i].y - 20);
+        glColor4f((lengthOfSnake-i)/(float)lengthOfSnake, 1.0, 0.0, 1.0);
         ccDrawSolidRect(startPoint, endPoint);
     }
 }
