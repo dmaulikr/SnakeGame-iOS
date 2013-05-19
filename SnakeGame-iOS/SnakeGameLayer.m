@@ -107,7 +107,7 @@
     glColor4f(0.0, 0.0, 0.5, 1.0);
     CGPoint startPoint = CGPointMake(0.0, 480.0);
     CGPoint endPoint = CGPointMake(320.0, 0.0);
-    ccFilledRect(startPoint, endPoint);
+    ccDrawSolidRect(startPoint, endPoint);
 }
 
 - (void) drawGrid
@@ -134,18 +134,18 @@
     {
         CGPoint startPoint = CGPointMake(snake[i].x, snake[i].y);
         CGPoint endPoint = CGPointMake(snake[i].x + 20, snake[i].y - 20);
-        ccFilledRect(startPoint, endPoint);
+        ccDrawSolidRect(startPoint, endPoint);
     }
 }
 
 - (void) drawItems
 {
-    glColor4f(1.0, 0.0, 0.0, 1.0);
     for (int i = 0; i < numberOfItems; i++)
     {
         CGPoint startPoint = CGPointMake(items[i].x, items[i].y);
         CGPoint endPoint = CGPointMake(items[i].x + 20, items[i].y - 20);
-        ccFilledRect(startPoint, endPoint);
+        glColor4f(1.0, 0.0, 0.0, 1.0);
+        ccDrawSolidRect(startPoint, endPoint);
     }
 }
 
@@ -164,9 +164,9 @@
         glLineWidth(2.0f);
     }
     [self drawBackground];
-    [self drawGrid];
     [self drawSnake];
     [self drawItems];
+    [self drawGrid];
     // Tell OpenGL to reset the color (to avoid scene transition tint effect)
     glColor4f(1.0, 1.0, 1.0, 1.0);
     // Tell OpenGL that you have finished drawing
@@ -269,27 +269,6 @@
             direction = @"Backward";
         }
     }
-}
-
-// Using this custom function from the website -> http://www.cocos2d-iphone.org/forum/topic/7511
-void ccFilledRect(CGPoint v1, CGPoint v2)
-{
-	CGPoint poli[]={v1,CGPointMake(v1.x,v2.y),v2,CGPointMake(v2.x,v1.y)};
-    
-	// Default GL states: GL_TEXTURE_2D, GL_VERTEX_ARRAY, GL_COLOR_ARRAY, GL_TEXTURE_COORD_ARRAY
-	// Needed states: GL_VERTEX_ARRAY,
-	// Unneeded states: GL_TEXTURE_2D, GL_TEXTURE_COORD_ARRAY, GL_COLOR_ARRAY
-	glDisable(GL_TEXTURE_2D);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
-    
-	glVertexPointer(2, GL_FLOAT, 0, poli);
-	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-    
-	// restore default state
-	glEnableClientState(GL_COLOR_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	glEnable(GL_TEXTURE_2D);
 }
 
 // on "dealloc" you need to release all your retained objects
