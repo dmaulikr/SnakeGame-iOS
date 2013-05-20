@@ -36,11 +36,13 @@
 	if( (self=[super init]) )
     {
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"theme.wav"];
+        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.5f];
+        [[SimpleAudioEngine sharedEngine] setEffectsVolume:0.5f];
         [self resetGame];
         [self setIsTouchEnabled:YES];
         alert = [[UIAlertView alloc] initWithTitle:@"Snake Game" message:nil
                                           delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [self drawBrickWall];
+        //[self drawBrickWall];
 	}
 	return self;
 }
@@ -238,8 +240,10 @@
     {
         CGPoint position;
         BOOL validPosition = NO;
+        BOOL intersection = NO;
         while (!validPosition)
         {
+            intersection = NO;
             int x = arc4random() % 16;
             int y = arc4random() % 24;
             position = CGPointMake(20.0 * x, 20.0 * y);
@@ -247,9 +251,21 @@
             {
                 if (position.x == snake[j].x && position.y == snake[j].y)
                 {
+                    intersection = YES;
                     break;
                 }
-                else if (j == lengthOfSnake-1)
+            }
+            if (intersection)
+            {
+                continue;
+            }
+            for (int j = 0; j < numberOfItems; j++)
+            {
+                if (position.x == items[j].x && position.y == items[j].y)
+                {
+                    break;
+                }
+                else if (j == numberOfItems-1)
                 {
                     items[i] = position;
                     validPosition = YES;
