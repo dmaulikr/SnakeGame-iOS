@@ -42,7 +42,7 @@
         [self setIsTouchEnabled:YES];
         alert = [[UIAlertView alloc] initWithTitle:@"Snake Game" message:nil
                                           delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        //[self drawBrickWall];
+        [self drawBrickWall];
 	}
 	return self;
 }
@@ -244,8 +244,8 @@
         while (!validPosition)
         {
             intersection = NO;
-            int x = arc4random() % 16;
-            int y = arc4random() % 24;
+            int x = arc4random() % 14 + 1;
+            int y = arc4random() % 21 + 2;
             position = CGPointMake(20.0 * x, 20.0 * y);
             for (int j = 0; j < lengthOfSnake; j++)
             {
@@ -262,6 +262,11 @@
             for (int j = 0; j < numberOfItems; j++)
             {
                 if (position.x == items[j].x && position.y == items[j].y)
+                {
+                    break;
+                }
+                else if ((ABS(position.x-items[j].x) == 20.0 && position.y == items[j].y) ||
+                         (ABS(position.y-items[j].y) == 20.0 && position.x == items[j].x))
                 {
                     break;
                 }
