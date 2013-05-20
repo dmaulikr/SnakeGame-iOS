@@ -75,7 +75,7 @@
         alert.message = @"Boundary Reached!";
         [alert show];
     }
-    else if (snake[0].y == 20 || snake[0].y == 440)
+    else if (snake[0].y == 20 || snake[0].y == 460)
     {
         [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
         [self unschedule:@selector(refresh:)];
