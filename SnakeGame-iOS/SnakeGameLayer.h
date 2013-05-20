@@ -32,6 +32,7 @@
 - (void) drawGrid;
 - (void) drawSnake;
 - (void) drawItems;
+- (void) drawBrickWall;
 - (void) initializeSnakeArray;
 - (void) initializeItemsArray;
 - (void) updateSnakeArray;

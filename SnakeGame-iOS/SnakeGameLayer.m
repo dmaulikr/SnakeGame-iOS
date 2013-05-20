@@ -40,6 +40,7 @@
         [self setIsTouchEnabled:YES];
         alert = [[UIAlertView alloc] initWithTitle:@"Snake Game" message:nil
                                           delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [self drawBrickWall];
 	}
 	return self;
 }
@@ -65,14 +66,14 @@
 - (void) refresh: (ccTime)t
 {
     [self updateSnakeArray];
-    if (snake[0].x == -20 || snake[0].x == 320)
+    if (snake[0].x == 0 || snake[0].x == 300)
     {
         [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
         [self unschedule:@selector(refresh:)];
         alert.message = @"Boundary Reached!";
         [alert show];
     }
-    else if (snake[0].y == 0 || snake[0].y == 480)
+    else if (snake[0].y == 20 || snake[0].y == 440)
     {
         [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
         [self unschedule:@selector(refresh:)];
@@ -148,6 +149,22 @@
         ccDrawSolidRect(startPoint, endPoint);
         glColor4f(1.0, 1.0, 1.0, 1.0);
         ccDrawRect(startPoint, endPoint);
+    }
+}
+
+- (void) drawBrickWall
+{
+    for (int j = 1; j < 25; j++)
+    {
+        for (int i = 0; i < 16; i++)
+        {
+            if (j == 1 || j > 22 || ((j > 0 && j < 23) && (i == 0 || i == 15)))
+            {
+                CCSprite *stone = [CCSprite spriteWithFile:@"stone.gif"];
+                stone.position = CGPointMake(20*i + 10, 20*j - 10);
+                [self addChild:stone];
+            }
+        }
     }
 }
 
@@ -230,7 +247,7 @@
             {
                 if (position.x == snake[j].x && position.y == snake[j].y)
                 {
-                    continue;
+                    break;
                 }
                 else if (j == lengthOfSnake-1)
                 {
