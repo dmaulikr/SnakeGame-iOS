@@ -22,7 +22,9 @@
     UIAlertView *alert;
     BOOL gamePaused;
     CCLabelTTF *levelLabel;
+    CCLabelTTF *pointsLabel;
     int level;
+    int points;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

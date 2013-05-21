@@ -35,6 +35,10 @@
         levelLabel.color = ccBLACK;
         levelLabel.position =  ccp(160.0, 460.0);
         [self addChild:levelLabel];
+        pointsLabel = [CCLabelTTF labelWithString:@"Points Unknown" fontName:@"Marker Felt" fontSize:25];
+        pointsLabel.color = ccBLUE;
+        pointsLabel.position =  ccp(260.0, 460.0);
+        [self addChild:pointsLabel];
         [self resetGame];
 	}
 	return self;
@@ -50,6 +54,8 @@
 {
     level = 1;
     levelLabel.string = [NSString stringWithFormat:@"Level %i", level];
+    points = 0;
+    pointsLabel.string = [NSString stringWithFormat:@"%i", points];
     startX = 20 * 5;
     startY = 20 * 2;
     direction = @"Forward";
@@ -89,6 +95,8 @@
     if (snake[0].x == item.x && snake[0].y == item.y)
     {
         NSLog(@"Item collected!");
+        points++;
+        pointsLabel.string = [NSString stringWithFormat:@"%i", points];
         [[SimpleAudioEngine sharedEngine] playEffect:@"collect.wav"];
         snake[lengthOfSnake] = CGPointMake(-20.0, -20.0);
         lengthOfSnake++;
