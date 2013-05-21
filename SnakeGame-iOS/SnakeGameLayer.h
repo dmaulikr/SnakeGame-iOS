@@ -16,10 +16,9 @@
 {
     float startX, startY;
 	NSString *direction;
-	CGPoint snake[30];
+	CGPoint snake[50];
+    CGPoint item;
 	int lengthOfSnake;
-    int numberOfItems;
-	CGPoint items[20];;
     UIAlertView *alert;
     BOOL gamePaused;
     CCLabelTTF *levelLabel;
@@ -33,10 +32,10 @@
 - (void) drawBackground;
 - (void) drawGrid;
 - (void) drawSnake;
-- (void) drawItems;
+- (void) drawItem;
 - (void) drawBrickWall;
 - (void) initializeSnakeArray;
-- (void) initializeItemsArray;
+- (void) createItem;
 - (void) updateSnakeArray;
 void ccFilledRect(CGPoint v1, CGPoint v2);
 

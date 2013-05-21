@@ -27,7 +27,6 @@
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"theme.wav"];
         [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.5f];
         [[SimpleAudioEngine sharedEngine] setEffectsVolume:0.5f];
-        [self resetGame];
         [self setIsTouchEnabled:YES];
         alert = [[UIAlertView alloc] initWithTitle:@"Snake Game" message:nil
                                           delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -35,7 +34,8 @@
         levelLabel = [CCLabelTTF labelWithString:@"Level Unknown" fontName:@"Marker Felt" fontSize:25];
         levelLabel.color = ccBLACK;
         levelLabel.position =  ccp(160.0, 460.0);
-       [self addChild:levelLabel];
+        [self addChild:levelLabel];
+        [self resetGame];
 	}
 	return self;
 }
@@ -54,9 +54,8 @@
     startY = 20 * 2;
     direction = @"Forward";
     lengthOfSnake = 4;
-    numberOfItems = 15;
     [self initializeSnakeArray];
-    [self initializeItemsArray];
+    [self createItem];
     gamePaused = YES;
 }
 
@@ -87,16 +86,13 @@
             [alert show];
         }
     }
-    for (int i = 0; i < numberOfItems; i++)
+    if (snake[0].x == item.x && snake[0].y == item.y)
     {
-        if (snake[0].x == items[i].x && snake[0].y == items[i].y)
-        {
-            NSLog(@"Item collected!");
-            [[SimpleAudioEngine sharedEngine] playEffect:@"collect.wav"];
-            snake[lengthOfSnake] = CGPointMake(-20.0, -20.0);
-            lengthOfSnake++;
-            items[i] = CGPointMake(-20.0, -20.0);
-        }
+        NSLog(@"Item collected!");
+        [[SimpleAudioEngine sharedEngine] playEffect:@"collect.wav"];
+        snake[lengthOfSnake] = CGPointMake(-20.0, -20.0);
+        lengthOfSnake++;
+        [self createItem];
     }
 }
 
@@ -136,17 +132,14 @@
     }
 }
 
-- (void) drawItems
+- (void) drawItem
 {
-    for (int i = 0; i < numberOfItems; i++)
-    {
-        CGPoint startPoint = CGPointMake(items[i].x, items[i].y);
-        CGPoint endPoint = CGPointMake(items[i].x + 20, items[i].y - 20);
-        glColor4f(1.0, 0.0, 0.0, 1.0);
-        ccDrawSolidRect(startPoint, endPoint);
-        glColor4f(1.0, 1.0, 1.0, 1.0);
-        ccDrawRect(startPoint, endPoint);
-    }
+    CGPoint startPoint = CGPointMake(item.x, item.y);
+    CGPoint endPoint = CGPointMake(item.x + 20, item.y - 20);
+    glColor4f(1.0, 0.0, 0.0, 1.0);
+    ccDrawSolidRect(startPoint, endPoint);
+    glColor4f(1.0, 1.0, 1.0, 1.0);
+    ccDrawRect(startPoint, endPoint);
 }
 
 - (void) drawBrickWall
@@ -182,7 +175,7 @@
     [self drawBackground];
     [self drawSnake];
     [self drawGrid];
-    [self drawItems];
+    [self drawItem];
     // Tell OpenGL to reset the color (to avoid scene transition tint effect)
     glColor4f(1.0, 1.0, 1.0, 1.0);
     // Tell OpenGL that you have finished drawing
@@ -229,47 +222,25 @@
     }
 }
 
-- (void) initializeItemsArray
+- (void) createItem
 {
-    for (int i = 0; i < numberOfItems; i++)
+    CGPoint position;
+    BOOL validPosition = NO;
+    while (!validPosition)
     {
-        CGPoint position;
-        BOOL validPosition = NO;
-        BOOL intersection = NO;
-        while (!validPosition)
+        int x = arc4random() % 14 + 1;
+        int y = arc4random() % 21 + 2;
+        position = CGPointMake(20.0 * x, 20.0 * y);
+        for (int j = 0; j < lengthOfSnake; j++)
         {
-            intersection = NO;
-            int x = arc4random() % 14 + 1;
-            int y = arc4random() % 21 + 2;
-            position = CGPointMake(20.0 * x, 20.0 * y);
-            for (int j = 0; j < lengthOfSnake; j++)
+            if (position.x == snake[j].x && position.y == snake[j].y)
             {
-                if (position.x == snake[j].x && position.y == snake[j].y)
-                {
-                    intersection = YES;
-                    break;
-                }
+                break;
             }
-            if (intersection)
+            else if (j == lengthOfSnake-1)
             {
-                continue;
-            }
-            for (int j = 0; j < numberOfItems; j++)
-            {
-                if (position.x == items[j].x && position.y == items[j].y)
-                {
-                    break;
-                }
-                else if ((ABS(position.x-items[j].x) == 20.0 && position.y == items[j].y) ||
-                         (ABS(position.y-items[j].y) == 20.0 && position.x == items[j].x))
-                {
-                    break;
-                }
-                else if (j == numberOfItems-1)
-                {
-                    items[i] = position;
-                    validPosition = YES;
-                }
+                item = position;
+                validPosition = YES;
             }
         }
     }
