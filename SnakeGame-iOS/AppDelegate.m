@@ -41,7 +41,7 @@
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
     // Make the splash screen display for longer
-    [NSThread sleepForTimeInterval:5.0];
+    [NSThread sleepForTimeInterval:3.0];
 	// Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	

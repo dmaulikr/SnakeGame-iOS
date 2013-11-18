@@ -16,7 +16,7 @@
 {
     float startX, startY;
 	NSString *direction;
-	CGPoint snake[50];
+	CGPoint snake[200];
     CGPoint item;
 	int lengthOfSnake;
     UIAlertView *alert;
@@ -25,6 +25,8 @@
     CCLabelTTF *pointsLabel;
     int level;
     int points;
+    float speed;
+    float bgcolors[6][4];
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

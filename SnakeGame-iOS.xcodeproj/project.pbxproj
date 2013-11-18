@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		981AD1791839E648003C4456 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 981AD1781839E648003C4456 /* config.plist */; };
 		982C722717420A2000045EFB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982C722617420A2000045EFB /* QuartzCore.framework */; };
 		982C722917420A2000045EFB /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982C722817420A2000045EFB /* OpenGLES.framework */; };
 		982C722B17420A2000045EFB /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982C722A17420A2000045EFB /* OpenAL.framework */; };
@@ -132,6 +133,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		981AD1781839E648003C4456 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = config.plist; path = Resources/config.plist; sourceTree = "<group>"; };
 		982C722217420A2000045EFB /* SnakeGame-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SnakeGame-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		982C722617420A2000045EFB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		982C722817420A2000045EFB /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -463,6 +465,7 @@
 				989D3ED51748CE8C00D7FF73 /* success.wav */,
 				989D3ED81748CF9300D7FF73 /* button.wav */,
 				982C724817420A2000045EFB /* Info.plist */,
+				981AD1781839E648003C4456 /* config.plist */,
 				982C724917420A2000045EFB /* iTunesArtwork */,
 			);
 			name = Resources;
@@ -846,6 +849,7 @@
 				989D3ED71748CE8C00D7FF73 /* success.wav in Resources */,
 				989D3ED91748CF9300D7FF73 /* button.wav in Resources */,
 				98AF2D2C17496949005881AA /* stone.gif in Resources */,
+				981AD1791839E648003C4456 /* config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

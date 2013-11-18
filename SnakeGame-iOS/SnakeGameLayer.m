@@ -25,8 +25,8 @@
 	if( (self=[super init]) )
     {
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"theme.wav"];
-        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.5f];
-        [[SimpleAudioEngine sharedEngine] setEffectsVolume:0.5f];
+        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.2f];
+        [[SimpleAudioEngine sharedEngine] setEffectsVolume:0.2f];
         [self setIsTouchEnabled:YES];
         alert = [[UIAlertView alloc] initWithTitle:@"Snake Game" message:nil
                                           delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -39,6 +39,17 @@
         pointsLabel.color = ccBLUE;
         pointsLabel.position =  ccp(260.0, 460.0);
         [self addChild:pointsLabel];
+        NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"config" ofType:@"plist"]];
+        NSArray *array = (NSArray *)[dictionary valueForKey:@"bgcolors"];
+        for (int i = 0; i < 6; i++)
+        {
+            NSString *color = (NSString *)[array objectAtIndex:i];
+            NSArray *colorComponents = [color componentsSeparatedByString:@","];
+            for (int j = 0; j < 4; j++)
+            {
+                bgcolors[i][j] = [[colorComponents objectAtIndex:j] floatValue];
+            }
+        }
         [self resetGame];
 	}
 	return self;
@@ -56,6 +67,7 @@
     levelLabel.string = [NSString stringWithFormat:@"Level %i", level];
     points = 0;
     pointsLabel.string = [NSString stringWithFormat:@"%i", points];
+    speed = 0.275;
     startX = 20 * 5;
     startY = 20 * 2;
     direction = @"Forward";
@@ -97,7 +109,19 @@
         NSLog(@"Item collected!");
         points++;
         pointsLabel.string = [NSString stringWithFormat:@"%i", points];
-        [[SimpleAudioEngine sharedEngine] playEffect:@"collect.wav"];
+        if (points > 0 && points % 5 == 0)
+        {
+            [[SimpleAudioEngine sharedEngine] playEffect:@"success.wav"];
+            level++;
+            levelLabel.string = [NSString stringWithFormat:@"Level %i", level];
+            speed = 0.275 - (level-1)*0.020;
+            [self unschedule:@selector(refresh:)];
+            [self schedule:@selector(refresh:) interval:speed];
+        }
+        else
+        {
+            [[SimpleAudioEngine sharedEngine] playEffect:@"collect.wav"];
+        }
         snake[lengthOfSnake] = CGPointMake(-20.0, -20.0);
         lengthOfSnake++;
         [self createItem];
@@ -106,7 +130,10 @@
 
 - (void) drawBackground
 {
-    glColor4f(0.0, 0.0, 0.5, 1.0);
+    float red = bgcolors[(level-1) % 6][0];
+    float green = bgcolors[(level-1) % 6][1];
+    float blue = bgcolors[(level-1) % 6][2];
+    glColor4f(red, green, blue, 1.0);
     CGPoint startPoint = CGPointMake(0.0, 480.0);
     CGPoint endPoint = CGPointMake(320.0, 0.0);
     ccDrawSolidRect(startPoint, endPoint);
@@ -259,7 +286,7 @@
     if (gamePaused)
     {
         gamePaused = NO;
-        [self schedule:@selector(refresh:) interval:0.175];
+        [self schedule:@selector(refresh:) interval:speed];
         return;
     }
     // Choose one of the touches to work with
