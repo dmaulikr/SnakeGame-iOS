@@ -70,7 +70,7 @@
     speed = 0.275;
     startX = 20 * 5;
     startY = 20 * 2;
-    direction = @"Forward";
+    direction = FORWARD;
     lengthOfSnake = 4;
     [self initializeSnakeArray];
     [self createItem];
@@ -228,25 +228,25 @@
     {
         snake[i] = snake[i-1];
     }
-    if ([direction isEqualToString:@"Forward"])
+    if (direction == FORWARD)
     {
         float x = snake[0].x+20;
         float y = snake[0].y;
         snake[0] = CGPointMake(x, y);
     }
-    else if ([direction isEqualToString:@"Backward"])
+    else if (direction == BACKWARD)
     {
         float x = snake[0].x-20;
         float y = snake[0].y;
         snake[0] = CGPointMake(x, y);
     }
-    else if ([direction isEqualToString:@"Downward"])
+    else if (direction == DOWNWARD)
     {
         float x = snake[0].x;
         float y = snake[0].y-20;
         snake[0] = CGPointMake(x, y);
     }
-    else if ([direction isEqualToString:@"Upward"])
+    else if (direction == UPWARD)
     {
         float x = snake[0].x;
         float y = snake[0].y+20;
@@ -298,26 +298,26 @@
     UITouch *touch = [touches anyObject];
     CGPoint location = [self convertTouchToNodeSpace:touch];
     // Update direction of snake motion based on touch location
-    if ([direction isEqualToString:@"Forward"] || [direction isEqualToString:@"Backward"])
+    if (direction == FORWARD || direction == BACKWARD)
     {
         if (location.y > snake[0].y)
         {
-            direction = @"Upward";
+            direction = UPWARD;
         }
         else if (location.y < snake[0].y - 20.0)
         {
-            direction = @"Downward";
+            direction = DOWNWARD;
         }
     }
-    else if ([direction isEqualToString:@"Upward"] || [direction isEqualToString:@"Downward"])
+    else if (direction == UPWARD || direction == DOWNWARD)
     {
         if (location.x > snake[0].x + 20.0)
         {
-            direction = @"Forward";
+            direction = FORWARD;
         }
         else if (location.x < snake[0].x)
         {
-            direction = @"Backward";
+            direction = BACKWARD;
         }
     }
 }
