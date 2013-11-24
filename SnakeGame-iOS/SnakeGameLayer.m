@@ -77,6 +77,13 @@
     gamePaused = YES;
 }
 
+- (void) setSpeed:(float)s
+{
+    speed = s;
+    [self unschedule:@selector(refresh:)];
+    [self schedule:@selector(refresh:) interval:speed];
+}
+
 - (void) refresh: (ccTime)t
 {
     [self updateSnakeArray];
@@ -114,9 +121,7 @@
             [[SimpleAudioEngine sharedEngine] playEffect:@"success.wav"];
             level++;
             levelLabel.string = [NSString stringWithFormat:@"Level %i", level];
-            speed = 0.275 - (level-1)*0.020;
-            [self unschedule:@selector(refresh:)];
-            [self schedule:@selector(refresh:) interval:speed];
+            [self setSpeed:speed-0.020];
         }
         else
         {

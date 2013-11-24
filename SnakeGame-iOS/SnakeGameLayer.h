@@ -33,6 +33,7 @@
 +(CCScene *) scene;
 
 - (void) resetGame;
+- (void) setSpeed:(float)s;
 - (void) drawBackground;
 - (void) drawGrid;
 - (void) drawSnake;
