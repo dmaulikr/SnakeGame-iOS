@@ -30,6 +30,7 @@
         [self setIsTouchEnabled:YES];
         alert = [[UIAlertView alloc] initWithTitle:@"Snake Game" message:nil
                                           delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        game = [[SnakeGameModel alloc] initWithView:self];
         [self drawBrickWall];
         levelLabel = [CCLabelTTF labelWithString:@"Level Unknown" fontName:@"Marker Felt" fontSize:25];
         levelLabel.color = ccBLACK;
@@ -50,98 +51,43 @@
                 bgcolors[i][j] = [[colorComponents objectAtIndex:j] floatValue];
             }
         }
-        [self resetGame];
+        [game resetGame];
 	}
 	return self;
+}
+
+- (void) displayAlertWithMessage:(NSString *)message
+{
+    alert.message = message;
+    [alert show];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [[SimpleAudioEngine sharedEngine] playEffect:@"button.wav"];
-    [self resetGame];
+    [game resetGame];
 }
 
-- (void) resetGame
+- (void) refresh:(ccTime)t
 {
-    level = 1;
-    levelLabel.string = [NSString stringWithFormat:@"Level %i", level];
-    points = 0;
-    pointsLabel.string = [NSString stringWithFormat:@"%i", points];
-    speed = 0.275;
-    startX = 20 * 5;
-    startY = 20 * 2;
-    direction = FORWARD;
-    lengthOfSnake = 4;
-    [self initializeSnakeArray];
-    [self createItem];
-    gamePaused = YES;
+    [game updateGameState];
 }
 
-- (void) setSpeed:(float)s
+- (void) updateLabels
 {
-    speed = s;
-    [self unschedule:@selector(refresh:)];
-    [self schedule:@selector(refresh:) interval:speed];
-}
-
-- (void) refresh: (ccTime)t
-{
-    [self updateSnakeArray];
-    if (snake[0].x == 0 || snake[0].x == 300)
-    {
-        [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
-        [self unschedule:@selector(refresh:)];
-        alert.message = @"Boundary Reached!";
-        [alert show];
-    }
-    else if (snake[0].y == 20 || snake[0].y == 460)
-    {
-        [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
-        [self unschedule:@selector(refresh:)];
-        alert.message = @"Boundary Reached!";
-        [alert show];
-    }
-    for (int i = 1; i < lengthOfSnake; i++)
-    {
-        if (snake[0].x == snake[i].x && snake[0].y == snake[i].y)
-        {
-            [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
-            [self unschedule:@selector(refresh:)];
-            alert.message = @"Self-intersection detected!";
-            [alert show];
-        }
-    }
-    if (snake[0].x == item.x && snake[0].y == item.y)
-    {
-        NSLog(@"Item collected!");
-        points++;
-        pointsLabel.string = [NSString stringWithFormat:@"%i", points];
-        if (points > 0 && points % 5 == 0)
-        {
-            [[SimpleAudioEngine sharedEngine] playEffect:@"success.wav"];
-            level++;
-            levelLabel.string = [NSString stringWithFormat:@"Level %i", level];
-            [self setSpeed:speed-0.020];
-        }
-        else
-        {
-            [[SimpleAudioEngine sharedEngine] playEffect:@"collect.wav"];
-        }
-        snake[lengthOfSnake] = CGPointMake(-20.0, -20.0);
-        lengthOfSnake++;
-        [self createItem];
-    }
+    levelLabel.string = [NSString stringWithFormat:@"Level %i", game.level];
+    pointsLabel.string = [NSString stringWithFormat:@"%i", game.points];
 }
 
 - (void) drawBackground
 {
-    float red = bgcolors[(level-1) % 6][0];
-    float green = bgcolors[(level-1) % 6][1];
-    float blue = bgcolors[(level-1) % 6][2];
+    float red = bgcolors[(game.level-1) % 6][0];
+    float green = bgcolors[(game.level-1) % 6][1];
+    float blue = bgcolors[(game.level-1) % 6][2];
     glColor4f(red, green, blue, 1.0);
-    CGPoint startPoint = CGPointMake(0.0, 480.0);
-    CGPoint endPoint = CGPointMake(320.0, 0.0);
-    ccDrawSolidRect(startPoint, endPoint);
+    CGPoint start = CGPointMake(0.0, 480.0);
+    CGPoint end = CGPointMake(320.0, 0.0);
+    ccDrawSolidRect(start, end);
 }
 
 - (void) drawGrid
@@ -162,24 +108,24 @@
 
 - (void) drawSnake
 {
-    // Tell OpenGL which color to use
-    for (int i = 0; i < lengthOfSnake; i++)
+    for (int i = 0; i < game.lengthOfSnake; i++)
     {
-        CGPoint startPoint = CGPointMake(snake[i].x, snake[i].y);
-        CGPoint endPoint = CGPointMake(snake[i].x + 20, snake[i].y - 20);
-        glColor4f((lengthOfSnake-i)/(float)lengthOfSnake, 1.0, 0.0, 1.0);
-        ccDrawSolidRect(startPoint, endPoint);
+        CGPoint start = [game getSnakePieceAtIndex:i];
+        CGPoint end = CGPointMake(start.x + 20, start.y - 20);
+        // Generates gradient color for snake tail
+        glColor4f((game.lengthOfSnake-i)/(float)game.lengthOfSnake, 1.0, 0.0, 1.0);
+        ccDrawSolidRect(start, end);
     }
 }
 
 - (void) drawItem
 {
-    CGPoint startPoint = CGPointMake(item.x, item.y);
-    CGPoint endPoint = CGPointMake(item.x + 20, item.y - 20);
+    CGPoint start = CGPointMake(game.item.x, game.item.y);
+    CGPoint end = CGPointMake(game.item.x + 20, game.item.y - 20);
     glColor4f(1.0, 0.0, 0.0, 1.0);
-    ccDrawSolidRect(startPoint, endPoint);
+    ccDrawSolidRect(start, end);
     glColor4f(1.0, 1.0, 1.0, 1.0);
-    ccDrawRect(startPoint, endPoint);
+    ccDrawRect(start, end);
 }
 
 - (void) drawBrickWall
@@ -222,104 +168,17 @@
     glDisable(GL_LINE_SMOOTH);
 }
 
-- (void) updateSnakeArray
-{
-    for (int i = lengthOfSnake-1; i > 0; i--)
-    {
-        snake[i] = snake[i-1];
-    }
-    if (direction == FORWARD)
-    {
-        float x = snake[0].x+20;
-        float y = snake[0].y;
-        snake[0] = CGPointMake(x, y);
-    }
-    else if (direction == BACKWARD)
-    {
-        float x = snake[0].x-20;
-        float y = snake[0].y;
-        snake[0] = CGPointMake(x, y);
-    }
-    else if (direction == DOWNWARD)
-    {
-        float x = snake[0].x;
-        float y = snake[0].y-20;
-        snake[0] = CGPointMake(x, y);
-    }
-    else if (direction == UPWARD)
-    {
-        float x = snake[0].x;
-        float y = snake[0].y+20;
-        snake[0] = CGPointMake(x, y);
-    }
-}
-
-- (void) initializeSnakeArray
-{
-    for (int i = 0; i < lengthOfSnake; i++)
-    {
-        snake[i] = CGPointMake(startX-20*i, startY);
-    }
-}
-
-- (void) createItem
-{
-    CGPoint position;
-    BOOL validPosition = NO;
-    while (!validPosition)
-    {
-        int x = arc4random() % 14 + 1;
-        int y = arc4random() % 21 + 2;
-        position = CGPointMake(20.0 * x, 20.0 * y);
-        for (int j = 0; j < lengthOfSnake; j++)
-        {
-            if (position.x == snake[j].x && position.y == snake[j].y)
-            {
-                break;
-            }
-            else if (j == lengthOfSnake-1)
-            {
-                item = position;
-                validPosition = YES;
-            }
-        }
-    }
-}
-
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (gamePaused)
+    if (game.paused)
     {
-        gamePaused = NO;
-        [self schedule:@selector(refresh:) interval:speed];
+        game.paused = NO;
         return;
     }
     // Choose one of the touches to work with
     UITouch *touch = [touches anyObject];
     CGPoint location = [self convertTouchToNodeSpace:touch];
-    // Update direction of snake motion based on touch location
-    if (direction == FORWARD || direction == BACKWARD)
-    {
-        if (location.y > snake[0].y)
-        {
-            direction = UPWARD;
-        }
-        else if (location.y < snake[0].y - 20.0)
-        {
-            direction = DOWNWARD;
-        }
-    }
-    else if (direction == UPWARD || direction == DOWNWARD)
-    {
-        if (location.x > snake[0].x + 20.0)
-        {
-            direction = FORWARD;
-        }
-        else if (location.x < snake[0].x)
-        {
-            direction = BACKWARD;
-        }
-    }
+    [game updateDirectionWithTouch:location];
 }
 
 - (void) dealloc

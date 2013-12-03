@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		98093A0918432A9E00817169 /* SnakeGameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 98093A0818432A9E00817169 /* SnakeGameModel.m */; };
 		981AD1791839E648003C4456 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 981AD1781839E648003C4456 /* config.plist */; };
 		982C722717420A2000045EFB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982C722617420A2000045EFB /* QuartzCore.framework */; };
 		982C722917420A2000045EFB /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982C722817420A2000045EFB /* OpenGLES.framework */; };
@@ -133,6 +134,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		98093A0718432A9E00817169 /* SnakeGameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnakeGameModel.h; sourceTree = "<group>"; };
+		98093A0818432A9E00817169 /* SnakeGameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnakeGameModel.m; sourceTree = "<group>"; };
 		981AD1781839E648003C4456 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = config.plist; path = Resources/config.plist; sourceTree = "<group>"; };
 		982C722217420A2000045EFB /* SnakeGame-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SnakeGame-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		982C722617420A2000045EFB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -437,6 +440,8 @@
 				982C738C17420A2200045EFB /* AppDelegate.m */,
 				982C738E17420A2200045EFB /* RootViewController.h */,
 				982C738F17420A2200045EFB /* RootViewController.m */,
+				98093A0718432A9E00817169 /* SnakeGameModel.h */,
+				98093A0818432A9E00817169 /* SnakeGameModel.m */,
 				982C739117420A2200045EFB /* SnakeGameLayer.h */,
 				982C739217420A2200045EFB /* SnakeGameLayer.m */,
 				982C739417420A2200045EFB /* GameConfig.h */,
@@ -959,6 +964,7 @@
 				982C738D17420A2200045EFB /* AppDelegate.m in Sources */,
 				982C739017420A2200045EFB /* RootViewController.m in Sources */,
 				982C739317420A2200045EFB /* SnakeGameLayer.m in Sources */,
+				98093A0918432A9E00817169 /* SnakeGameModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1011,7 +1017,7 @@
 				GCC_PREFIX_HEADER = "SnakeGame-iOS/Prefix.pch";
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "SnakeGame-iOS/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1027,7 +1033,7 @@
 				GCC_PREFIX_HEADER = "SnakeGame-iOS/Prefix.pch";
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "SnakeGame-iOS/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;

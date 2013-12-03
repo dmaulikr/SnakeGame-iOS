@@ -21,51 +21,29 @@
  
  */
 
-
-// When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
-#import "SimpleAudioEngine.h"
+#import "SnakeGameModel.h"
 
-typedef enum directionTypes
+@interface SnakeGameLayer : CCLayer <UIAlertViewDelegate, SnakeGameDelegate>
 {
-    FORWARD,
-    BACKWARD,
-    UPWARD,
-    DOWNWARD
-    
-} Direction;
-
-// HelloWorldLayer
-@interface SnakeGameLayer : CCLayer <UIAlertViewDelegate>
-{
-    float startX, startY;
-	Direction direction;
-	CGPoint snake[200];
-    CGPoint item;
-	int lengthOfSnake;
-    UIAlertView *alert;
-    BOOL gamePaused;
+    SnakeGameModel *game;
     CCLabelTTF *levelLabel;
     CCLabelTTF *pointsLabel;
-    int level;
-    int points;
-    float speed;
     float bgcolors[6][4];
+    UIAlertView *alert;
 }
 
-// returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 
-- (void) resetGame;
-- (void) setSpeed:(float)s;
+- (void) displayAlertWithMessage:(NSString *)message;
+- (void) refresh:(ccTime)t;
+- (void) updateLabels;
 - (void) drawBackground;
 - (void) drawGrid;
 - (void) drawSnake;
 - (void) drawItem;
 - (void) drawBrickWall;
-- (void) initializeSnakeArray;
-- (void) createItem;
-- (void) updateSnakeArray;
+
 void ccFilledRect(CGPoint v1, CGPoint v2);
 
 @end
