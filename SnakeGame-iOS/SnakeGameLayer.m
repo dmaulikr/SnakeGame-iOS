@@ -40,6 +40,15 @@
         pointsLabel.color = ccBLUE;
         pointsLabel.position =  ccp(260.0, 460.0);
         [self addChild:pointsLabel];
+        pauseButton = [CCMenuItemImage itemFromNormalImage:@"pause.png" selectedImage:@"pause.png" block:^(id sender)
+                       {
+                           [[SimpleAudioEngine sharedEngine] playEffect:@"button.wav"];
+                           game.paused = !game.paused;
+                       }];
+        pauseButton.position = CGPointMake(60, 460);
+        CCMenu *menu = [CCMenu menuWithItems:pauseButton, nil];
+        menu.position = CGPointZero;
+        [self addChild:menu];
         NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"config" ofType:@"plist"]];
         NSArray *array = (NSArray *)[dictionary valueForKey:@"bgcolors"];
         for (int i = 0; i < 6; i++)
