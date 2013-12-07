@@ -130,7 +130,7 @@
 		989D3ED61748CE8C00D7FF73 /* gameover.wav in Resources */ = {isa = PBXBuildFile; fileRef = 989D3ED41748CE8C00D7FF73 /* gameover.wav */; };
 		989D3ED71748CE8C00D7FF73 /* success.wav in Resources */ = {isa = PBXBuildFile; fileRef = 989D3ED51748CE8C00D7FF73 /* success.wav */; };
 		989D3ED91748CF9300D7FF73 /* button.wav in Resources */ = {isa = PBXBuildFile; fileRef = 989D3ED81748CF9300D7FF73 /* button.wav */; };
-		98AF2D2C17496949005881AA /* stone.gif in Resources */ = {isa = PBXBuildFile; fileRef = 98AF2D2B17496949005881AA /* stone.gif */; };
+		98EDDD491853B594006FB049 /* stone.gif in Resources */ = {isa = PBXBuildFile; fileRef = 98EDDD481853B594006FB049 /* stone.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -379,7 +379,7 @@
 		989D3ED41748CE8C00D7FF73 /* gameover.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = gameover.wav; path = Resources/gameover.wav; sourceTree = "<group>"; };
 		989D3ED51748CE8C00D7FF73 /* success.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = success.wav; path = Resources/success.wav; sourceTree = "<group>"; };
 		989D3ED81748CF9300D7FF73 /* button.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = button.wav; path = Resources/button.wav; sourceTree = "<group>"; };
-		98AF2D2B17496949005881AA /* stone.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = stone.gif; path = Resources/stone.gif; sourceTree = "<group>"; };
+		98EDDD481853B594006FB049 /* stone.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = stone.gif; path = Resources/stone.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -463,7 +463,7 @@
 				982C724217420A2000045EFB /* Icon-Small@2x.png */,
 				982C724417420A2000045EFB /* Icon.png */,
 				982C724617420A2000045EFB /* Icon@2x.png */,
-				98AF2D2B17496949005881AA /* stone.gif */,
+				98EDDD481853B594006FB049 /* stone.gif */,
 				989D3ECF1748CA4A00D7FF73 /* theme.wav */,
 				989D3ED21748CBF300D7FF73 /* collect.wav */,
 				989D3ED41748CE8C00D7FF73 /* gameover.wav */,
@@ -853,8 +853,8 @@
 				989D3ED61748CE8C00D7FF73 /* gameover.wav in Resources */,
 				989D3ED71748CE8C00D7FF73 /* success.wav in Resources */,
 				989D3ED91748CF9300D7FF73 /* button.wav in Resources */,
-				98AF2D2C17496949005881AA /* stone.gif in Resources */,
 				981AD1791839E648003C4456 /* config.plist in Resources */,
+				98EDDD491853B594006FB049 /* stone.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
