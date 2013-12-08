@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		98093A0918432A9E00817169 /* SnakeGameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 98093A0818432A9E00817169 /* SnakeGameModel.m */; };
 		981AD1791839E648003C4456 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 981AD1781839E648003C4456 /* config.plist */; };
+		9829F0FC1854EE0400A25895 /* muteoff.png in Resources */ = {isa = PBXBuildFile; fileRef = 9829F0FA1854EE0400A25895 /* muteoff.png */; };
+		9829F0FD1854EE0400A25895 /* muteon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9829F0FB1854EE0400A25895 /* muteon.png */; };
 		982C722717420A2000045EFB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982C722617420A2000045EFB /* QuartzCore.framework */; };
 		982C722917420A2000045EFB /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982C722817420A2000045EFB /* OpenGLES.framework */; };
 		982C722B17420A2000045EFB /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982C722A17420A2000045EFB /* OpenAL.framework */; };
@@ -138,6 +140,8 @@
 		98093A0718432A9E00817169 /* SnakeGameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnakeGameModel.h; sourceTree = "<group>"; };
 		98093A0818432A9E00817169 /* SnakeGameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnakeGameModel.m; sourceTree = "<group>"; };
 		981AD1781839E648003C4456 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = config.plist; path = Resources/config.plist; sourceTree = "<group>"; };
+		9829F0FA1854EE0400A25895 /* muteoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = muteoff.png; path = Resources/muteoff.png; sourceTree = "<group>"; };
+		9829F0FB1854EE0400A25895 /* muteon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = muteon.png; path = Resources/muteon.png; sourceTree = "<group>"; };
 		982C722217420A2000045EFB /* SnakeGame-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SnakeGame-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		982C722617420A2000045EFB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		982C722817420A2000045EFB /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -466,6 +470,8 @@
 				982C724417420A2000045EFB /* Icon.png */,
 				982C724617420A2000045EFB /* Icon@2x.png */,
 				98EDDD481853B594006FB049 /* stone.gif */,
+				9829F0FA1854EE0400A25895 /* muteoff.png */,
+				9829F0FB1854EE0400A25895 /* muteon.png */,
 				98EDDD4A1853B6E6006FB049 /* pause.png */,
 				989D3ECF1748CA4A00D7FF73 /* theme.wav */,
 				989D3ED21748CBF300D7FF73 /* collect.wav */,
@@ -859,6 +865,8 @@
 				981AD1791839E648003C4456 /* config.plist in Resources */,
 				98EDDD491853B594006FB049 /* stone.gif in Resources */,
 				98EDDD4B1853B6E6006FB049 /* pause.png in Resources */,
+				9829F0FC1854EE0400A25895 /* muteoff.png in Resources */,
+				9829F0FD1854EE0400A25895 /* muteon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

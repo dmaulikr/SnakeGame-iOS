@@ -32,6 +32,8 @@
     float bgcolors[6][4];
     UIAlertView *alert;
     CCMenuItemImage *pauseButton;
+    CCMenuItem *muteon, *muteoff;
+    CCMenuItemToggle *muteButton;
 }
 
 +(CCScene *) scene;

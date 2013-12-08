@@ -42,11 +42,33 @@
         [self addChild:pointsLabel];
         pauseButton = [CCMenuItemImage itemFromNormalImage:@"pause.png" selectedImage:@"pause.png" block:^(id sender)
                        {
-                           [[SimpleAudioEngine sharedEngine] playEffect:@"button.wav"];
+                           if (!game.mute)
+                           {
+                               [[SimpleAudioEngine sharedEngine] playEffect:@"button.wav"];
+                           }
                            game.paused = !game.paused;
                        }];
-        pauseButton.position = CGPointMake(60, 460);
-        CCMenu *menu = [CCMenu menuWithItems:pauseButton, nil];
+        pauseButton.position = CGPointMake(35, 460);
+        muteon = [CCMenuItemImage itemFromNormalImage:@"muteon.png" selectedImage:@"muteon.png"];
+        muteoff = [CCMenuItemImage itemFromNormalImage:@"muteoff.png" selectedImage:@"muteoff.png"];
+        muteButton = [CCMenuItemToggle itemWithBlock:^(id sender)
+                      {
+                          if ((game.mute = muteButton.selectedItem == muteoff))
+                          {
+                              [[SimpleAudioEngine sharedEngine] stopAllEffects];
+                              [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
+                          }
+                          else
+                          {
+                              [[SimpleAudioEngine sharedEngine] playEffect:@"button.wav"];
+                              [[SimpleAudioEngine sharedEngine] resumeBackgroundMusic];
+                          }
+                      }
+                                               items:muteoff, muteon, nil];
+        muteButton.selectedIndex = 1;
+        muteButton.scale = 1.10;
+        muteButton.position = CGPointMake(75, 460);
+        CCMenu *menu = [CCMenu menuWithItems:pauseButton, muteButton, nil];
         menu.position = CGPointZero;
         [self addChild:menu];
         NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"config" ofType:@"plist"]];
@@ -73,7 +95,10 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [[SimpleAudioEngine sharedEngine] playEffect:@"button.wav"];
+    if (!game.mute)
+    {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"button.wav"];
+    }
     [game resetGame];
 }
 

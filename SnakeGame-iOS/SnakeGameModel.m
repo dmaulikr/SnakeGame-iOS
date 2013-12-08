@@ -18,6 +18,7 @@
 @synthesize lengthOfSnake = _lengthOfSnake;
 @synthesize direction = _direction;
 @synthesize paused = _paused;
+@synthesize mute = _mute;
 
 - (id) initWithView:(id)layer
 {
@@ -169,13 +170,19 @@
     [self updateSnakeArray];
     if (snake[0].x == 0 || snake[0].x == 300)
     {
-        [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
+        if (!self.mute)
+        {
+            [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
+        }
         [_view unschedule:@selector(refresh:)];
         [_view displayAlertWithMessage:@"Boundary Reached"];
     }
     else if (snake[0].y == 20 || snake[0].y == 460)
     {
-        [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
+        if (!self.mute)
+        {
+            [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
+        }
         [_view unschedule:@selector(refresh:)];
         [_view displayAlertWithMessage:@"Boundary Reached"];
     }
@@ -183,7 +190,10 @@
     {
         if (snake[0].x == snake[i].x && snake[0].y == snake[i].y)
         {
-            [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
+            if (!self.mute)
+            {
+                [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
+            }
             [_view unschedule:@selector(refresh:)];
             [_view displayAlertWithMessage:@"Self-intersection detected"];
         }
@@ -194,13 +204,19 @@
         self.points++;
         if (self.points > 0 && self.points % 5 == 0)
         {
-            [[SimpleAudioEngine sharedEngine] playEffect:@"success.wav"];
+            if (!self.mute)
+            {
+                [[SimpleAudioEngine sharedEngine] playEffect:@"success.wav"];
+            }
             self.level++;
             [self setSpeed:self.speed-0.020];
         }
         else
         {
-            [[SimpleAudioEngine sharedEngine] playEffect:@"collect.wav"];
+            if (!self.mute)
+            {
+                [[SimpleAudioEngine sharedEngine] playEffect:@"collect.wav"];
+            }
         }
         snake[self.lengthOfSnake] = CGPointMake(-20.0, -20.0);
         self.lengthOfSnake++;

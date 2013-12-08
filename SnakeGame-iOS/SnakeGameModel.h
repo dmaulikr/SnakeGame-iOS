@@ -42,6 +42,7 @@ typedef enum directionTypes
 @property (nonatomic, assign) int lengthOfSnake;
 @property (nonatomic, assign) Direction direction;
 @property (nonatomic, assign) BOOL paused;
+@property (nonatomic, assign) BOOL mute;
 
 - (id) initWithView:(id)layer;
 - (void) resetGame;
