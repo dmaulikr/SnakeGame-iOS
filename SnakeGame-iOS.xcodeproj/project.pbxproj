@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		98093A0918432A9E00817169 /* SnakeGameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 98093A0818432A9E00817169 /* SnakeGameModel.m */; };
 		981AD1791839E648003C4456 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 981AD1781839E648003C4456 /* config.plist */; };
-		9829F0FC1854EE0400A25895 /* muteoff.png in Resources */ = {isa = PBXBuildFile; fileRef = 9829F0FA1854EE0400A25895 /* muteoff.png */; };
-		9829F0FD1854EE0400A25895 /* muteon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9829F0FB1854EE0400A25895 /* muteon.png */; };
 		982C722717420A2000045EFB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982C722617420A2000045EFB /* QuartzCore.framework */; };
 		982C722917420A2000045EFB /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982C722817420A2000045EFB /* OpenGLES.framework */; };
 		982C722B17420A2000045EFB /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982C722A17420A2000045EFB /* OpenAL.framework */; };
@@ -134,6 +132,8 @@
 		989D3ED91748CF9300D7FF73 /* button.wav in Resources */ = {isa = PBXBuildFile; fileRef = 989D3ED81748CF9300D7FF73 /* button.wav */; };
 		98A69CD718557C8B006E113A /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 98A69CD518557C8B006E113A /* menu.png */; };
 		98A69CD818557C8B006E113A /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 98A69CD618557C8B006E113A /* play.png */; };
+		98A69CDB18558398006E113A /* muteoff.png in Resources */ = {isa = PBXBuildFile; fileRef = 98A69CD918558398006E113A /* muteoff.png */; };
+		98A69CDC18558398006E113A /* muteon.png in Resources */ = {isa = PBXBuildFile; fileRef = 98A69CDA18558398006E113A /* muteon.png */; };
 		98EDDD491853B594006FB049 /* stone.gif in Resources */ = {isa = PBXBuildFile; fileRef = 98EDDD481853B594006FB049 /* stone.gif */; };
 		98EDDD4B1853B6E6006FB049 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 98EDDD4A1853B6E6006FB049 /* pause.png */; };
 /* End PBXBuildFile section */
@@ -142,8 +142,6 @@
 		98093A0718432A9E00817169 /* SnakeGameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnakeGameModel.h; sourceTree = "<group>"; };
 		98093A0818432A9E00817169 /* SnakeGameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnakeGameModel.m; sourceTree = "<group>"; };
 		981AD1781839E648003C4456 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = config.plist; path = Resources/config.plist; sourceTree = "<group>"; };
-		9829F0FA1854EE0400A25895 /* muteoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = muteoff.png; path = Resources/muteoff.png; sourceTree = "<group>"; };
-		9829F0FB1854EE0400A25895 /* muteon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = muteon.png; path = Resources/muteon.png; sourceTree = "<group>"; };
 		982C722217420A2000045EFB /* SnakeGame-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SnakeGame-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		982C722617420A2000045EFB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		982C722817420A2000045EFB /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -388,6 +386,8 @@
 		989D3ED81748CF9300D7FF73 /* button.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = button.wav; path = Resources/button.wav; sourceTree = "<group>"; };
 		98A69CD518557C8B006E113A /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu.png; path = Resources/menu.png; sourceTree = "<group>"; };
 		98A69CD618557C8B006E113A /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = Resources/play.png; sourceTree = "<group>"; };
+		98A69CD918558398006E113A /* muteoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = muteoff.png; path = Resources/muteoff.png; sourceTree = "<group>"; };
+		98A69CDA18558398006E113A /* muteon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = muteon.png; path = Resources/muteon.png; sourceTree = "<group>"; };
 		98EDDD481853B594006FB049 /* stone.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = stone.gif; path = Resources/stone.gif; sourceTree = "<group>"; };
 		98EDDD4A1853B6E6006FB049 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pause.png; path = Resources/pause.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -476,9 +476,9 @@
 				98EDDD481853B594006FB049 /* stone.gif */,
 				98A69CD518557C8B006E113A /* menu.png */,
 				98A69CD618557C8B006E113A /* play.png */,
-				9829F0FA1854EE0400A25895 /* muteoff.png */,
-				9829F0FB1854EE0400A25895 /* muteon.png */,
 				98EDDD4A1853B6E6006FB049 /* pause.png */,
+				98A69CD918558398006E113A /* muteoff.png */,
+				98A69CDA18558398006E113A /* muteon.png */,
 				989D3ECF1748CA4A00D7FF73 /* theme.wav */,
 				989D3ED21748CBF300D7FF73 /* collect.wav */,
 				989D3ED41748CE8C00D7FF73 /* gameover.wav */,
@@ -871,10 +871,10 @@
 				981AD1791839E648003C4456 /* config.plist in Resources */,
 				98EDDD491853B594006FB049 /* stone.gif in Resources */,
 				98EDDD4B1853B6E6006FB049 /* pause.png in Resources */,
-				9829F0FC1854EE0400A25895 /* muteoff.png in Resources */,
-				9829F0FD1854EE0400A25895 /* muteon.png in Resources */,
 				98A69CD718557C8B006E113A /* menu.png in Resources */,
 				98A69CD818557C8B006E113A /* play.png in Resources */,
+				98A69CDB18558398006E113A /* muteoff.png in Resources */,
+				98A69CDC18558398006E113A /* muteon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

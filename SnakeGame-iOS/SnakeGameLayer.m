@@ -57,7 +57,7 @@
         muteoff = [CCMenuItemImage itemFromNormalImage:@"muteoff.png" selectedImage:@"muteoff.png"];
         muteButton = [CCMenuItemToggle itemWithBlock:^(id sender)
                       {
-                          if ((game.mute = muteButton.selectedItem == muteoff))
+                          if ((game.mute = muteButton.selectedItem == muteon))
                           {
                               [[SimpleAudioEngine sharedEngine] stopAllEffects];
                               [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
@@ -68,7 +68,7 @@
                               [[SimpleAudioEngine sharedEngine] resumeBackgroundMusic];
                           }
                       }
-                                               items:muteoff, muteon, nil];
+                                               items:muteon, muteoff, nil];
         muteButton.selectedIndex = 1;
         muteButton.scale = 1.10;
         muteButton.position = CGPointMake(75, 460);
@@ -104,6 +104,7 @@
         [[SimpleAudioEngine sharedEngine] playEffect:@"button.wav"];
     }
     [game resetGame];
+    pauseButton.selectedIndex = 0;
 }
 
 - (void) refresh:(ccTime)t
