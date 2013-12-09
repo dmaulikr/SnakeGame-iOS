@@ -120,10 +120,17 @@
 
 - (void) drawBackground
 {
-    float red = bgcolors[(game.level-1) % 6][0];
-    float green = bgcolors[(game.level-1) % 6][1];
-    float blue = bgcolors[(game.level-1) % 6][2];
-    glColor4f(red, green, blue, 1.0);
+    if (game.paused)
+    {
+       glColor4f(0.1, 0.1, 0.1, 1.0);
+    }
+    else
+    {
+        float red = bgcolors[(game.level-1) % 6][0];
+        float green = bgcolors[(game.level-1) % 6][1];
+        float blue = bgcolors[(game.level-1) % 6][2];
+        glColor4f(red, green, blue, 1.0);
+    }
     CGPoint start = CGPointMake(0.0, 480.0);
     CGPoint end = CGPointMake(320.0, 0.0);
     ccDrawSolidRect(start, end);
@@ -152,7 +159,15 @@
         CGPoint start = [game getSnakePieceAtIndex:i];
         CGPoint end = CGPointMake(start.x + 20, start.y - 20);
         // Generates gradient color for snake tail
-        glColor4f((game.lengthOfSnake-i)/(float)game.lengthOfSnake, 1.0, 0.0, 1.0);
+        if (game.paused)
+        {
+            float greyValue = (game.lengthOfSnake-i)/(float)game.lengthOfSnake;
+            glColor4f(greyValue, greyValue, greyValue, 1.0);
+        }
+        else
+        {
+            glColor4f((game.lengthOfSnake-i)/(float)game.lengthOfSnake, 1.0, 0.0, 1.0);
+        }
         ccDrawSolidRect(start, end);
     }
 }
@@ -161,7 +176,14 @@
 {
     CGPoint start = CGPointMake(game.item.x, game.item.y);
     CGPoint end = CGPointMake(game.item.x + 20, game.item.y - 20);
-    glColor4f(1.0, 0.0, 0.0, 1.0);
+    if (game.paused)
+    {
+        glColor4f(0.3, 0.3, 0.3, 1.0);
+    }
+    else
+    {
+        glColor4f(1.0, 0.0, 0.0, 1.0);
+    }
     ccDrawSolidRect(start, end);
     glColor4f(1.0, 1.0, 1.0, 1.0);
     ccDrawRect(start, end);
