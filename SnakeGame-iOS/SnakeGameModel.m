@@ -29,7 +29,7 @@
     return self;
 }
 
-// Reset the game back to square one
+// Reset the game back to square one.
 - (void) resetGame
 {
     self.level = 1;
@@ -58,7 +58,7 @@
     }
 }
 
-// Change the speed of the snake's motion
+// Change the speed of the snake's motion by doing more/less frequent updates.
 - (void) setSpeed:(float)s
 {
     _speed = s;
@@ -66,12 +66,15 @@
     [_view schedule:@selector(refresh:) interval:s];
 }
 
+// This method was necessary because I didn't know how to declare
+// the snake array as a property without converting it into an NSArray.
 - (CGPoint) getSnakePieceAtIndex:(int)i
 {
     return snake[i];
 }
 
-// Figure out where to position the snake and then build it there
+// Figure out where to position the snake at the start of the game
+// and then construct it there.
 - (void) initializeSnakeArray
 {
     for (int i = 0; i < self.lengthOfSnake; i++)
@@ -80,6 +83,8 @@
     }
 }
 
+// Create a new item in a random location such that it does not
+// actually touch the snake!
 - (void) createItem
 {
     CGPoint position;
@@ -167,7 +172,9 @@
 // Update the state of the game at this moment
 - (void) updateGameState
 {
+    // First, move the snake.
     [self updateSnakeArray];
+    // The game is over if the snake runs into any of the walls.
     if (snake[0].x == 0 || snake[0].x == 300)
     {
         if (!self.mute)
@@ -186,6 +193,7 @@
         [_view unschedule:@selector(refresh:)];
         [_view displayAlertWithMessage:@"Boundary Reached"];
     }
+    // The game is over if the snake touches its own tail.
     for (int i = 1; i < self.lengthOfSnake; i++)
     {
         if (snake[0].x == snake[i].x && snake[0].y == snake[i].y)
@@ -198,10 +206,13 @@
             [_view displayAlertWithMessage:@"Self-intersection detected"];
         }
     }
+    // The snake gains points if it collects an item.
     if (snake[0].x == self.item.x && snake[0].y == self.item.y)
     {
         NSLog(@"Item collected!");
         self.points++;
+        // THe game will proceed to the next level after gaining a certain
+        // number of points.  The speed will also increase, accordingly.
         if (self.points > 0 && self.points % 5 == 0)
         {
             if (!self.mute)
@@ -218,6 +229,7 @@
                 [[SimpleAudioEngine sharedEngine] playEffect:@"collect.wav"];
             }
         }
+        // The snake grows and the next item is spawned.
         snake[self.lengthOfSnake] = CGPointMake(-20.0, -20.0);
         self.lengthOfSnake++;
         [self createItem];

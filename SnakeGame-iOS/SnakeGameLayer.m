@@ -75,6 +75,7 @@
         CCMenu *menu = [CCMenu menuWithItems:pauseButton, muteButton, nil];
         menu.position = CGPointZero;
         [self addChild:menu];
+        // We need to pre-load a list of background colors from a p-list
         NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"config" ofType:@"plist"]];
         NSArray *array = (NSArray *)[dictionary valueForKey:@"bgcolors"];
         for (int i = 0; i < 6; i++)
@@ -91,12 +92,14 @@
 	return self;
 }
 
+// Convenience method for displaying an alert with a message
 - (void) displayAlertWithMessage:(NSString *)message
 {
     alert.message = message;
     [alert show];
 }
 
+// Wait for the user to dismiss any dialog and then respond to it
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (!game.mute)
@@ -107,11 +110,13 @@
     pauseButton.selectedIndex = 0;
 }
 
+// This is the main engine that drives the game animation
 - (void) refresh:(ccTime)t
 {
     [game updateGameState];
 }
 
+// Convenience method for updating labels
 - (void) updateLabels
 {
     levelLabel.string = [NSString stringWithFormat:@"Level %i", game.level];
@@ -120,10 +125,12 @@
 
 - (void) drawBackground
 {
+    // Use greyscale if the game has been paused.
     if (game.paused)
     {
        glColor4f(0.1, 0.1, 0.1, 1.0);
     }
+    // Use the pre-loaded background colors.
     else
     {
         float red = bgcolors[(game.level-1) % 6][0];
@@ -138,7 +145,6 @@
 
 - (void) drawGrid
 {
-    // Tell OpenGL which color to use
     glColor4f(0.5, 0.5, 0.5, 1.0);
     for (int i = 0; i < 16; i++)
     {
@@ -152,18 +158,20 @@
     }
 }
 
+// Generates a gradient color for the snake's tail.
 - (void) drawSnake
 {
     for (int i = 0; i < game.lengthOfSnake; i++)
     {
         CGPoint start = [game getSnakePieceAtIndex:i];
         CGPoint end = CGPointMake(start.x + 20, start.y - 20);
-        // Generates gradient color for snake tail
+        // Use greyscale if the game has been paused.
         if (game.paused)
         {
             float greyValue = (game.lengthOfSnake-i)/(float)game.lengthOfSnake;
             glColor4f(greyValue, greyValue, greyValue, 1.0);
         }
+        // Use a greenish color
         else
         {
             glColor4f((game.lengthOfSnake-i)/(float)game.lengthOfSnake, 1.0, 0.0, 1.0);
@@ -176,10 +184,12 @@
 {
     CGPoint start = CGPointMake(game.item.x, game.item.y);
     CGPoint end = CGPointMake(game.item.x + 20, game.item.y - 20);
+    // Use greyscale if the game has been paused.
     if (game.paused)
     {
         glColor4f(0.3, 0.3, 0.3, 1.0);
     }
+    // Use the red color
     else
     {
         glColor4f(1.0, 0.0, 0.0, 1.0);
@@ -189,6 +199,7 @@
     ccDrawRect(start, end);
 }
 
+// Draws a barrier around the circumferance of the game area
 - (void) drawBrickWall
 {
     for (int j = 1; j < 25; j++)
@@ -205,7 +216,7 @@
     }
 }
 
-// Drawing the graph and the axes
+// Draw's everything!
 - (void) draw
 {
     // Tell OpenGL that you intend to draw a line segment
@@ -231,6 +242,7 @@
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    // Don't respond to touches if the game is paused.
     if (game.paused)
     {
         return;

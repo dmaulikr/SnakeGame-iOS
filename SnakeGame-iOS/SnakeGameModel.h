@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "SimpleAudioEngine.h"
 
+// The four possible directions of movement
 typedef enum directionTypes
 {
     FORWARD,
@@ -31,16 +32,16 @@ typedef enum directionTypes
 @interface SnakeGameModel : NSObject
 {
     id<SnakeGameDelegate> _view;
-    CGPoint snake[350];
+    CGPoint snake[350];                                 // The snake, itself!
 }
 
-@property (nonatomic, assign) int level;
-@property (nonatomic, assign) int points;
-@property (nonatomic, assign) float speed;
-@property (nonatomic, assign) CGPoint startPoint;
-@property (nonatomic, assign) CGPoint item;
+@property (nonatomic, assign) int level;                // Levels increase as the snake grows
+@property (nonatomic, assign) int points;               // Collecting items gives you points
+@property (nonatomic, assign) float speed;              // This is INVERSELY proportional to the snake's speed!
+@property (nonatomic, assign) CGPoint startPoint;       // The snake's home position
+@property (nonatomic, assign) CGPoint item;             // The collectible item
 @property (nonatomic, assign) int lengthOfSnake;
-@property (nonatomic, assign) Direction direction;
+@property (nonatomic, assign) Direction direction;      // The current direction of motion
 @property (nonatomic, assign) BOOL paused;
 @property (nonatomic, assign) BOOL mute;
 
