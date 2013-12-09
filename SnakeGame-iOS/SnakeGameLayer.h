@@ -31,7 +31,8 @@
     CCLabelTTF *pointsLabel;
     float bgcolors[6][4];
     UIAlertView *alert;
-    CCMenuItemImage *pauseButton;
+    CCMenuItem *pauseon, *pauseoff;
+    CCMenuItemToggle *pauseButton;
     CCMenuItem *muteon, *muteoff;
     CCMenuItemToggle *muteButton;
 }

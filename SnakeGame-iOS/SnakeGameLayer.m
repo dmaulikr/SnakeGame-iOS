@@ -40,14 +40,18 @@
         pointsLabel.color = ccBLUE;
         pointsLabel.position =  ccp(260.0, 460.0);
         [self addChild:pointsLabel];
-        pauseButton = [CCMenuItemImage itemFromNormalImage:@"pause.png" selectedImage:@"pause.png" block:^(id sender)
-                       {
-                           if (!game.mute)
-                           {
-                               [[SimpleAudioEngine sharedEngine] playEffect:@"button.wav"];
-                           }
-                           game.paused = !game.paused;
-                       }];
+        pauseon = [CCMenuItemImage itemFromNormalImage:@"play.png" selectedImage:@"play.png"];
+        pauseoff = [CCMenuItemImage itemFromNormalImage:@"pause.png" selectedImage:@"pause.png"];
+        pauseButton = [CCMenuItemToggle itemWithBlock:^(id sender)
+                      {
+                          (game.paused = pauseButton.selectedItem == pauseon);
+                          if (!game.mute)
+                          {
+                              [[SimpleAudioEngine sharedEngine] playEffect:@"button.wav"];
+                          }
+                      }
+                                               items:pauseon, pauseoff, nil];
+        pauseButton.selectedIndex = 0;
         pauseButton.position = CGPointMake(35, 460);
         muteon = [CCMenuItemImage itemFromNormalImage:@"muteon.png" selectedImage:@"muteon.png"];
         muteoff = [CCMenuItemImage itemFromNormalImage:@"muteoff.png" selectedImage:@"muteoff.png"];
@@ -206,7 +210,6 @@
 {
     if (game.paused)
     {
-        game.paused = NO;
         return;
     }
     // Choose one of the touches to work with
