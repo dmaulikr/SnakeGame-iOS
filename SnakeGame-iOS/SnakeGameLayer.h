@@ -18,6 +18,8 @@
     6.  Saving games.
     7.  Menu screen with level selection, sound config, and loading saved games.
     8.  For higher levels, insert death squares randomly.
+    9.  Add Menu screen with options to view high scores, go through tutorial, and choose between difficulty levels.
+    10. Implement difficulty levels: Easy, Normal, Hard (will affect rate of game progression).
  
  */
 
@@ -46,6 +48,7 @@
 - (void) drawGrid;
 - (void) drawSnake;
 - (void) drawItem;
+- (void) drawSlowDownPill;
 - (void) drawBrickWall;
 
 void ccFilledRect(CGPoint v1, CGPoint v2);

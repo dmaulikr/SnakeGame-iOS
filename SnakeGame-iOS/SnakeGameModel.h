@@ -40,6 +40,7 @@ typedef enum directionTypes
 @property (nonatomic, assign) float speed;              // This is INVERSELY proportional to the snake's speed!
 @property (nonatomic, assign) CGPoint startPoint;       // The snake's home position
 @property (nonatomic, assign) CGPoint item;             // The collectible item
+@property (nonatomic, assign) CGPoint pill;             // The slow down pill
 @property (nonatomic, assign) int lengthOfSnake;
 @property (nonatomic, assign) Direction direction;      // The current direction of motion
 @property (nonatomic, assign) BOOL paused;
@@ -51,6 +52,7 @@ typedef enum directionTypes
 - (CGPoint) getSnakePieceAtIndex:(int)i;
 - (void) initializeSnakeArray;
 - (void) createItem;
+- (void) createSlowDownPill;
 - (void) updateSnakeArray;
 - (void) updateDirectionWithTouch:(CGPoint)location;
 - (void) updateGameState;

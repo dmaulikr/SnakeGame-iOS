@@ -199,6 +199,17 @@
     ccDrawRect(start, end);
 }
 
+- (void) drawSlowDownPill
+{
+    CGPoint start = CGPointMake(game.pill.x, game.pill.y);
+    CGPoint end = CGPointMake(game.pill.x + 20, game.pill.y - 20);
+    // Use the black color
+    glColor4f(0.0, 0.0, 0.0, 1.0);
+    ccDrawSolidRect(start, end);
+    glColor4f(1.0, 1.0, 1.0, 1.0);
+    ccDrawRect(start, end);
+}
+
 // Draws a barrier around the circumferance of the game area
 - (void) drawBrickWall
 {
@@ -234,6 +245,7 @@
     [self drawSnake];
     [self drawGrid];
     [self drawItem];
+    [self drawSlowDownPill];
     // Tell OpenGL to reset the color (to avoid scene transition tint effect)
     glColor4f(1.0, 1.0, 1.0, 1.0);
     // Tell OpenGL that you have finished drawing

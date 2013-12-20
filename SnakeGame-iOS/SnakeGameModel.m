@@ -15,6 +15,7 @@
 @synthesize speed = _speed;
 @synthesize startPoint = _startPoint;
 @synthesize item = _item;
+@synthesize pill = _pill;
 @synthesize lengthOfSnake = _lengthOfSnake;
 @synthesize direction = _direction;
 @synthesize paused = _paused;
@@ -41,6 +42,7 @@
     self.lengthOfSnake = 4;
     [self initializeSnakeArray];
     [self createItem];
+    self.pill = CGPointMake(-20.0, -20.0);
     _paused = YES;
 }
 
@@ -103,6 +105,36 @@
             else if (j == self.lengthOfSnake-1)
             {
                 self.item = position;
+                validPosition = YES;
+            }
+        }
+    }
+}
+
+// Create a slow down pill; same logic as for creating an item, except
+// don't position it in the same place as the item!
+- (void) createSlowDownPill
+{
+    CGPoint position;
+    BOOL validPosition = NO;
+    while (!validPosition)
+    {
+        int x = arc4random() % 14 + 1;
+        int y = arc4random() % 21 + 2;
+        position = CGPointMake(20.0 * x, 20.0 * y);
+        if (position.x == self.item.x && position.y == self.item.y)
+        {
+            continue;
+        }
+        for (int j = 0; j < self.lengthOfSnake; j++)
+        {
+            if (position.x == snake[j].x && position.y == snake[j].y)
+            {
+                break;
+            }
+            else if (j == self.lengthOfSnake-1)
+            {
+                self.pill = position;
                 validPosition = YES;
             }
         }
@@ -206,11 +238,13 @@
             [_view displayAlertWithMessage:@"Self-intersection detected"];
         }
     }
-    // The snake gains points if it collects an item.
+    // The snake gains points if it collects an item and any slow down pills
+    // that are currently available get removed from the board.
     if (snake[0].x == self.item.x && snake[0].y == self.item.y)
     {
         NSLog(@"Item collected!");
         self.points++;
+        self.pill = CGPointMake(-20.0, -20.0);
         // THe game will proceed to the next level after gaining a certain
         // number of points.  The speed will also increase, accordingly.
         if (self.points > 0 && self.points % 5 == 0)
@@ -221,6 +255,13 @@
             }
             self.level++;
             [self setSpeed:self.speed-0.020];
+            // The snake grows one square longer
+            snake[self.lengthOfSnake] = CGPointMake(-20.0, -20.0);
+            self.lengthOfSnake++;
+            // Spawn the next item
+            [self createItem];
+            // Offer one slow down pill at the start of each level
+            [self createSlowDownPill];
         }
         else
         {
@@ -228,12 +269,19 @@
             {
                 [[SimpleAudioEngine sharedEngine] playEffect:@"collect.wav"];
             }
+            // The snake grows one square longer
+            snake[self.lengthOfSnake] = CGPointMake(-20.0, -20.0);
+            self.lengthOfSnake++;
+            // Spawn the next item
+            [self createItem];
         }
-        // The snake grows and the next item is spawned.
-        snake[self.lengthOfSnake] = CGPointMake(-20.0, -20.0);
-        self.lengthOfSnake++;
-        [self createItem];
         [_view updateLabels];
+    }
+    // The snake slows down a bit if it collects a slow down pill
+    if (snake[0].x == self.pill.x && snake[0].y == self.pill.y)
+    {
+        self.pill = CGPointMake(-20.0, -20.0);
+        [self setSpeed:self.speed+0.020];
     }
 }
 
