@@ -280,6 +280,10 @@
     // The snake slows down a bit if it collects a slow down pill
     if (snake[0].x == self.pill.x && snake[0].y == self.pill.y)
     {
+        if (!self.mute)
+        {
+            [[SimpleAudioEngine sharedEngine] playEffect:@"pill.wav"];
+        }
         self.pill = CGPointMake(-20.0, -20.0);
         [self setSpeed:self.speed+0.020];
     }
