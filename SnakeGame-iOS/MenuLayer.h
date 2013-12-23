@@ -19,5 +19,11 @@
 +(CCScene *) scene;
 
 -(void) playGameSelected:(id)sender;
+-(void) highScoresSelected:(id)sender;
+-(void) tutorialSelected:(id)sender;
+-(void) easySelected:(id)sender;
+-(void) normalSelected:(id)sender;
+-(void) hardSelected:(id)sender;
+
 
 @end

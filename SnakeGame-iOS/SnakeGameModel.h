@@ -20,6 +20,15 @@ typedef enum directionTypes
     
 } Direction;
 
+// The three difficulty levels
+typedef enum difficultyTypes
+{
+    EASY,
+    NORMAL,
+    HARD
+    
+} Difficulty;
+
 @protocol SnakeGameDelegate
 
 - (void) unschedule:(SEL)selector;
@@ -33,6 +42,7 @@ typedef enum directionTypes
 {
     id<SnakeGameDelegate> _view;
     CGPoint snake[350];                                 // The snake, itself!
+    float acceleration;                                   // Depends on the difficulty level
 }
 
 @property (nonatomic, assign) int level;                // Levels increase as the snake grows
@@ -46,7 +56,7 @@ typedef enum directionTypes
 @property (nonatomic, assign) BOOL paused;
 @property (nonatomic, assign) BOOL mute;
 
-- (id) initWithView:(id)layer;
+- (id) initWithView:(id)layer difficulty:(Difficulty)difficulty;
 - (void) resetGame;
 - (void) setSpeed:(float)s;
 - (CGPoint) getSnakePieceAtIndex:(int)i;

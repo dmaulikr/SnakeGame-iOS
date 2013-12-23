@@ -21,11 +21,23 @@
 @synthesize paused = _paused;
 @synthesize mute = _mute;
 
-- (id) initWithView:(id)layer
+- (id) initWithView:(id)layer difficulty:(Difficulty)difficulty
 {
     if (self = [super init])
     {
         _view = layer;
+        if (difficulty == EASY)
+        {
+            acceleration = 1.0;
+        }
+        else if (difficulty == NORMAL)
+        {
+            acceleration = 1.25;
+        }
+        else if (difficulty == HARD)
+        {
+            acceleration = 1.5;
+        }
     }
     return self;
 }
@@ -254,7 +266,7 @@
                 [[SimpleAudioEngine sharedEngine] playEffect:@"success.wav"];
             }
             self.level++;
-            [self setSpeed:self.speed-0.020];
+            [self setSpeed:self.speed-acceleration*0.020];
             // The snake grows one square longer
             snake[self.lengthOfSnake] = ccp(-20.0, -20.0);
             self.lengthOfSnake++;
@@ -285,7 +297,7 @@
             [[SimpleAudioEngine sharedEngine] playEffect:@"pill.wav"];
         }
         self.pill = ccp(-20.0, -20.0);
-        [self setSpeed:self.speed+0.020];
+        [self setSpeed:self.speed+acceleration*0.020];
     }
 }
 

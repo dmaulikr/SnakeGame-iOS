@@ -71,19 +71,19 @@
 -(void) easySelected:(id)sender
 {
     [[SimpleAudioEngine sharedEngine] playEffect:@"button.wav"];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[SnakeGameLayer scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[SnakeGameLayer sceneWithDifficulty:EASY]]];
 }
 
 -(void) normalSelected:(id)sender
 {
     [[SimpleAudioEngine sharedEngine] playEffect:@"button.wav"];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[SnakeGameLayer scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[SnakeGameLayer sceneWithDifficulty:NORMAL]]];
 }
 
 -(void) hardSelected:(id)sender
 {
     [[SimpleAudioEngine sharedEngine] playEffect:@"button.wav"];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[SnakeGameLayer scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[SnakeGameLayer sceneWithDifficulty:HARD]]];
 }
 
 @end

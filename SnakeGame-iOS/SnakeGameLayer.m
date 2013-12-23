@@ -11,15 +11,15 @@
 
 @implementation SnakeGameLayer
 
-+(CCScene *) scene
++(CCScene *) sceneWithDifficulty:(Difficulty)difficulty
 {
 	CCScene *scene = [CCScene node];
-	SnakeGameLayer *layer = [SnakeGameLayer node];
+	SnakeGameLayer *layer = [[[SnakeGameLayer alloc] initWithDifficulty:difficulty] autorelease];
 	[scene addChild: layer];
 	return scene;
 }
 
--(id) init
+-(id) initWithDifficulty:(Difficulty)difficulty
 {
 	if( (self=[super init]) )
     {
@@ -27,7 +27,7 @@
         [self setIsTouchEnabled:YES];
         alert = [[UIAlertView alloc] initWithTitle:@"Snake Game" message:nil
                                           delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        game = [[SnakeGameModel alloc] initWithView:self];
+        game = [[SnakeGameModel alloc] initWithView:self difficulty:difficulty];
         [self drawBrickWall];
         levelLabel = [CCLabelTTF labelWithString:@"Level Unknown" fontName:@"Marker Felt" fontSize:25];
         levelLabel.color = ccBLACK;

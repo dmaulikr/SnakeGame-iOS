@@ -39,8 +39,9 @@
     CCMenuItemToggle *muteButton;
 }
 
-+(CCScene *) scene;
++(CCScene *) sceneWithDifficulty:(Difficulty)difficulty;
 
+-(id) initWithDifficulty:(Difficulty)difficulty;
 - (void) displayAlertWithMessage:(NSString *)message;
 - (void) refresh:(ccTime)t;
 - (void) updateLabels;
