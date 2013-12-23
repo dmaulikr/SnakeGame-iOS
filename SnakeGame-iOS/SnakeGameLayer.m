@@ -7,7 +7,6 @@
 //
 
 
-// Import the interfaces
 #import "SnakeGameLayer.h"
 
 @implementation SnakeGameLayer
@@ -25,8 +24,6 @@
 	if( (self=[super init]) )
     {
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"theme.wav"];
-        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.2f];
-        [[SimpleAudioEngine sharedEngine] setEffectsVolume:0.2f];
         [self setIsTouchEnabled:YES];
         alert = [[UIAlertView alloc] initWithTitle:@"Snake Game" message:nil
                                           delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -52,7 +49,7 @@
                       }
                                                items:pauseon, pauseoff, nil];
         pauseButton.selectedIndex = 0;
-        pauseButton.position = CGPointMake(35, 460);
+        pauseButton.position = ccp(35, 460);
         muteon = [CCMenuItemImage itemFromNormalImage:@"muteon.png" selectedImage:@"muteon.png"];
         muteoff = [CCMenuItemImage itemFromNormalImage:@"muteoff.png" selectedImage:@"muteoff.png"];
         muteButton = [CCMenuItemToggle itemWithBlock:^(id sender)
@@ -71,7 +68,7 @@
                                                items:muteon, muteoff, nil];
         muteButton.selectedIndex = 1;
         muteButton.scale = 1.10;
-        muteButton.position = CGPointMake(75, 460);
+        muteButton.position = ccp(75, 460);
         CCMenu *menu = [CCMenu menuWithItems:pauseButton, muteButton, nil];
         menu.position = CGPointZero;
         [self addChild:menu];
@@ -138,8 +135,8 @@
         float blue = bgcolors[(game.level-1) % 6][2];
         glColor4f(red, green, blue, 1.0);
     }
-    CGPoint start = CGPointMake(0.0, 480.0);
-    CGPoint end = CGPointMake(320.0, 0.0);
+    CGPoint start = ccp(0.0, 480.0);
+    CGPoint end = ccp(320.0, 0.0);
     ccDrawSolidRect(start, end);
 }
 
@@ -149,12 +146,12 @@
     for (int i = 0; i < 16; i++)
     {
         float x = 20 * i;
-        ccDrawLine(CGPointMake(x, 0.0), CGPointMake(x, 480.0));
+        ccDrawLine(ccp(x, 0.0), ccp(x, 480.0));
     }
     for (int j = 0; j < 24; j++)
     {
         float y = 20 * j;
-        ccDrawLine(CGPointMake(0.0, y), CGPointMake(320.0, y));
+        ccDrawLine(ccp(0.0, y), ccp(320.0, y));
     }
 }
 
@@ -164,7 +161,7 @@
     for (int i = 0; i < game.lengthOfSnake; i++)
     {
         CGPoint start = [game getSnakePieceAtIndex:i];
-        CGPoint end = CGPointMake(start.x + 20, start.y - 20);
+        CGPoint end = ccp(start.x + 20, start.y - 20);
         // Use greyscale if the game has been paused.
         if (game.paused)
         {
@@ -182,8 +179,8 @@
 
 - (void) drawItem
 {
-    CGPoint start = CGPointMake(game.item.x, game.item.y);
-    CGPoint end = CGPointMake(game.item.x + 20, game.item.y - 20);
+    CGPoint start = ccp(game.item.x, game.item.y);
+    CGPoint end = ccp(game.item.x + 20, game.item.y - 20);
     // Use greyscale if the game has been paused.
     if (game.paused)
     {
@@ -201,8 +198,8 @@
 
 - (void) drawSlowDownPill
 {
-    CGPoint start = CGPointMake(game.pill.x, game.pill.y);
-    CGPoint end = CGPointMake(game.pill.x + 20, game.pill.y - 20);
+    CGPoint start = ccp(game.pill.x, game.pill.y);
+    CGPoint end = ccp(game.pill.x + 20, game.pill.y - 20);
     // Use the black color
     glColor4f(0.0, 0.0, 0.0, 1.0);
     ccDrawSolidRect(start, end);
@@ -220,7 +217,7 @@
             if (j == 1 || j > 22 || ((j > 0 && j < 23) && (i == 0 || i == 15)))
             {
                 CCSprite *stone = [CCSprite spriteWithFile:@"stone.gif"];
-                stone.position = CGPointMake(20*i + 10, 20*j - 10);
+                stone.position = ccp(20*i + 10, 20*j - 10);
                 [self addChild:stone];
             }
         }

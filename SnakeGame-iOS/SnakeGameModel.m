@@ -37,12 +37,12 @@
     self.points = 0;
     [_view updateLabels];
     _speed = 0.275;
-    self.startPoint = CGPointMake(20.0*5.0, 20.0*2.0);
+    self.startPoint = ccp(20.0*5.0, 20.0*2.0);
     self.direction = FORWARD;
     self.lengthOfSnake = 4;
     [self initializeSnakeArray];
     [self createItem];
-    self.pill = CGPointMake(-20.0, -20.0);
+    self.pill = ccp(-20.0, -20.0);
     _paused = YES;
 }
 
@@ -81,7 +81,7 @@
 {
     for (int i = 0; i < self.lengthOfSnake; i++)
     {
-        snake[i] = CGPointMake(self.startPoint.x-20.0*i, self.startPoint.y);
+        snake[i] = ccp(self.startPoint.x-20.0*i, self.startPoint.y);
     }
 }
 
@@ -95,7 +95,7 @@
     {
         int x = arc4random() % 14 + 1;
         int y = arc4random() % 21 + 2;
-        position = CGPointMake(20.0 * x, 20.0 * y);
+        position = ccp(20.0 * x, 20.0 * y);
         for (int j = 0; j < self.lengthOfSnake; j++)
         {
             if (position.x == snake[j].x && position.y == snake[j].y)
@@ -121,7 +121,7 @@
     {
         int x = arc4random() % 14 + 1;
         int y = arc4random() % 21 + 2;
-        position = CGPointMake(20.0 * x, 20.0 * y);
+        position = ccp(20.0 * x, 20.0 * y);
         if (position.x == self.item.x && position.y == self.item.y)
         {
             continue;
@@ -152,25 +152,25 @@
     {
         float x = snake[0].x + 20;
         float y = snake[0].y;
-        snake[0] = CGPointMake(x, y);
+        snake[0] = ccp(x, y);
     }
     else if (self.direction == BACKWARD)
     {
         float x = snake[0].x - 20;
         float y = snake[0].y;
-        snake[0] = CGPointMake(x, y);
+        snake[0] = ccp(x, y);
     }
     else if (self.direction == DOWNWARD)
     {
         float x = snake[0].x;
         float y = snake[0].y - 20;
-        snake[0] = CGPointMake(x, y);
+        snake[0] = ccp(x, y);
     }
     else if (self.direction == UPWARD)
     {
         float x = snake[0].x;
         float y = snake[0].y + 20;
-        snake[0] = CGPointMake(x, y);
+        snake[0] = ccp(x, y);
     }
 }
 
@@ -244,7 +244,7 @@
     {
         NSLog(@"Item collected!");
         self.points++;
-        self.pill = CGPointMake(-20.0, -20.0);
+        self.pill = ccp(-20.0, -20.0);
         // THe game will proceed to the next level after gaining a certain
         // number of points.  The speed will also increase, accordingly.
         if (self.points > 0 && self.points % 5 == 0)
@@ -256,7 +256,7 @@
             self.level++;
             [self setSpeed:self.speed-0.020];
             // The snake grows one square longer
-            snake[self.lengthOfSnake] = CGPointMake(-20.0, -20.0);
+            snake[self.lengthOfSnake] = ccp(-20.0, -20.0);
             self.lengthOfSnake++;
             // Spawn the next item
             [self createItem];
@@ -270,7 +270,7 @@
                 [[SimpleAudioEngine sharedEngine] playEffect:@"collect.wav"];
             }
             // The snake grows one square longer
-            snake[self.lengthOfSnake] = CGPointMake(-20.0, -20.0);
+            snake[self.lengthOfSnake] = ccp(-20.0, -20.0);
             self.lengthOfSnake++;
             // Spawn the next item
             [self createItem];
@@ -284,7 +284,7 @@
         {
             [[SimpleAudioEngine sharedEngine] playEffect:@"pill.wav"];
         }
-        self.pill = CGPointMake(-20.0, -20.0);
+        self.pill = ccp(-20.0, -20.0);
         [self setSpeed:self.speed+0.020];
     }
 }

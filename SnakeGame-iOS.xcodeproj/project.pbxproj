@@ -146,6 +146,7 @@
 		98A69CEE1855A3A5006E113A /* tutorial.png in Resources */ = {isa = PBXBuildFile; fileRef = 98A69CE51855A3A4006E113A /* tutorial.png */; };
 		98EDDD491853B594006FB049 /* stone.gif in Resources */ = {isa = PBXBuildFile; fileRef = 98EDDD481853B594006FB049 /* stone.gif */; };
 		98EDDD4B1853B6E6006FB049 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 98EDDD4A1853B6E6006FB049 /* pause.png */; };
+		98F608501867C29200D28A6F /* MenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F6084F1867C29200D28A6F /* MenuLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -410,6 +411,8 @@
 		98A69CE51855A3A4006E113A /* tutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tutorial.png; path = Resources/tutorial.png; sourceTree = "<group>"; };
 		98EDDD481853B594006FB049 /* stone.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = stone.gif; path = Resources/stone.gif; sourceTree = "<group>"; };
 		98EDDD4A1853B6E6006FB049 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pause.png; path = Resources/pause.png; sourceTree = "<group>"; };
+		98F6084E1867C29100D28A6F /* MenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuLayer.h; sourceTree = "<group>"; };
+		98F6084F1867C29200D28A6F /* MenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -474,6 +477,8 @@
 				98093A0818432A9E00817169 /* SnakeGameModel.m */,
 				982C739117420A2200045EFB /* SnakeGameLayer.h */,
 				982C739217420A2200045EFB /* SnakeGameLayer.m */,
+				98F6084E1867C29100D28A6F /* MenuLayer.h */,
+				98F6084F1867C29200D28A6F /* MenuLayer.m */,
 				982C739417420A2200045EFB /* GameConfig.h */,
 				982C723717420A2000045EFB /* Resources */,
 				982C724B17420A2000045EFB /* libs */,
@@ -1025,6 +1030,7 @@
 				982C739017420A2200045EFB /* RootViewController.m in Sources */,
 				982C739317420A2200045EFB /* SnakeGameLayer.m in Sources */,
 				98093A0918432A9E00817169 /* SnakeGameModel.m in Sources */,
+				98F608501867C29200D28A6F /* MenuLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
