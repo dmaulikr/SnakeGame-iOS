@@ -41,8 +41,10 @@ typedef enum difficultyTypes
 @interface SnakeGameModel : NSObject
 {
     id<SnakeGameDelegate> _view;
-    CGPoint snake[350];                                 // The snake, itself!
+    CGPoint snake[350];                                 // The current position of the snake
+    CGPoint snake_snapshot[350];                        // The position of the snake after it last ate
     float acceleration;                                 // Depends on the difficulty level
+    Direction direction_snapshot;                       // The direction of the snake after it last ate
 }
 
 @property (nonatomic, assign) int level;                // Levels increase as the snake grows
@@ -58,12 +60,14 @@ typedef enum difficultyTypes
 
 - (id) initWithView:(id)layer difficulty:(Difficulty)difficulty;
 - (void) resetGame;
+- (void) revertToLastSnapshot;
 - (void) setSpeed:(float)s;
 - (CGPoint) getSnakePieceAtIndex:(int)i;
 - (void) initializeSnakeArray;
 - (void) createItem;
 - (void) createSlowDownPill;
 - (void) updateSnakeArray;
+- (void) captureSnapshot;
 - (void) updateDirectionWithTouch:(CGPoint)location;
 - (void) updateGameState;
 

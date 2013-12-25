@@ -57,6 +57,16 @@
     self.pill = ccp(-20.0, -20.0);
 }
 
+// Revert to the previous snapshot
+- (void) revertToLastSnapshot
+{
+    for (int i = 0; i < self.lengthOfSnake; i++)
+    {
+        snake[i] = snake_snapshot[i];
+    }
+    self.direction = direction_snapshot;
+}
+
 // Pauses/continues the game
 - (void) setPaused:(BOOL)option
 {
@@ -94,6 +104,7 @@
     {
         snake[i] = ccp(self.startPoint.x-20.0*i, self.startPoint.y);
     }
+    [self captureSnapshot];
 }
 
 // Create a new item in a random location such that it does not
@@ -185,6 +196,17 @@
     }
 }
 
+// Stores a snapshot of the snake's current position
+// and direction in order to revert back to it later
+- (void) captureSnapshot
+{
+    for (int i = 0; i < self.lengthOfSnake; i++)
+    {
+        snake_snapshot[i] = snake[i];
+    }
+    direction_snapshot = self.direction;
+}
+
 // Update direction of snake motion based on touch location
 - (void) updateDirectionWithTouch:(CGPoint)location
 {
@@ -273,6 +295,8 @@
             [self createItem];
             // Offer one slow down pill at the start of each level
             [self createSlowDownPill];
+            // Record the current position of the snake
+            [self captureSnapshot];
         }
         else
         {
@@ -285,6 +309,8 @@
             self.lengthOfSnake++;
             // Spawn the next item
             [self createItem];
+            // Record the current position of the snake
+            [self captureSnapshot];
         }
         [_view updateLabels];
     }
