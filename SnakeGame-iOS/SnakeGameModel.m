@@ -55,7 +55,6 @@
     [self initializeSnakeArray];
     [self createItem];
     self.pill = ccp(-20.0, -20.0);
-    _paused = YES;
 }
 
 // Pauses/continues the game

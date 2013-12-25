@@ -84,6 +84,7 @@
                 bgcolors[i][j] = [[colorComponents objectAtIndex:j] floatValue];
             }
         }
+        game.paused = YES;
         [game resetGame];
 	}
 	return self;
@@ -103,6 +104,7 @@
     {
         [[SimpleAudioEngine sharedEngine] playEffect:@"button.wav"];
     }
+    game.paused = YES;
     [game resetGame];
     pauseButton.selectedIndex = 0;
 }
