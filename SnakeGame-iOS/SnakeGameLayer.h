@@ -13,13 +13,12 @@
         but maybe, we can simply use this for level progression, and count the
         points based on other factors such as each square moved.
     3.  High scores table.
-    4.  Pause button.
-    5.  Keep track of the number of lives and reset level instead of game when player still has lives.
-    6.  Saving games.
-    7.  Menu screen with level selection, sound config, and loading saved games.
-    8.  For higher levels, insert death squares randomly.
-    9.  Add Menu screen with options to view high scores, go through tutorial, and choose between difficulty levels.
-    10. Implement difficulty levels: Easy, Normal, Hard (will affect rate of game progression).
+    4.  Implement ability to save games.
+    5.  For higher levels, insert death squares randomly.
+    6.  Add Menu screen with options to view high scores, go through tutorial, choose between four difficulty levels (easy, normal, hard, and nightmare), and load saved games.
+    7.  Implement difficulty levels: Easy, Normal, Hard, Nightmare (will affect rate of game progression).
+    8.  One Up pill per level (available for 30 seconds).
+    9.  Create tutorial screen (a live demonstation would be really cool!)
  
  */
 

@@ -20,6 +20,7 @@
 @synthesize direction = _direction;
 @synthesize paused = _paused;
 @synthesize mute = _mute;
+@synthesize lives = _lives;
 
 - (id) initWithView:(id)layer difficulty:(Difficulty)difficulty
 {
@@ -47,6 +48,7 @@
 {
     self.level = 1;
     self.points = 0;
+    self.lives = 5;
     [_view updateLabels];
     _speed = 0.275;
     self.startPoint = ccp(20.0*5.0, 20.0*2.0);
@@ -246,6 +248,8 @@
         {
             [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
         }
+        self.lives--;
+        NSLog(@"Your snake has %i lives remaining", self.lives);
         [_view unschedule:@selector(refresh:)];
         [_view displayAlertWithMessage:@"Boundary Reached"];
     }
@@ -255,6 +259,8 @@
         {
             [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
         }
+        self.lives--;
+        NSLog(@"Your snake has %i lives remaining", self.lives);
         [_view unschedule:@selector(refresh:)];
         [_view displayAlertWithMessage:@"Boundary Reached"];
     }
@@ -267,8 +273,11 @@
             {
                 [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
             }
+            self.lives--;
+            NSLog(@"Your snake has %i lives remaining", self.lives);
             [_view unschedule:@selector(refresh:)];
             [_view displayAlertWithMessage:@"Self-intersection detected"];
+            return;
         }
     }
     // The snake gains points if it collects an item and any slow down pills

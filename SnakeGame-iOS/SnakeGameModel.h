@@ -57,6 +57,7 @@ typedef enum difficultyTypes
 @property (nonatomic, assign) Direction direction;      // The current direction of motion
 @property (nonatomic, assign) BOOL paused;
 @property (nonatomic, assign) BOOL mute;
+@property (nonatomic, assign) int lives;                // Number of remaining lives for the snake
 
 - (id) initWithView:(id)layer difficulty:(Difficulty)difficulty;
 - (void) resetGame;

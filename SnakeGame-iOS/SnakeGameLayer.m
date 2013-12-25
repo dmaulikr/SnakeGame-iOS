@@ -105,7 +105,14 @@
         [[SimpleAudioEngine sharedEngine] playEffect:@"button.wav"];
     }
     game.paused = YES;
-    [game revertToLastSnapshot];
+    if (game.lives)
+    {
+        [game revertToLastSnapshot];
+    }
+    else
+    {
+        [game resetGame];
+    }
     pauseButton.selectedIndex = 0;
 }
 
