@@ -219,7 +219,7 @@
     // First, move the snake.
     [self updateSnakeArray];
     // The game is over if the snake runs into any of the walls.
-    if (snake[0].x == 0 || snake[0].x == 300)
+    if (snake[0].x == 0.0 || snake[0].x == 300.0)
     {
         if (!self.mute)
         {
@@ -228,7 +228,7 @@
         [_view unschedule:@selector(refresh:)];
         [_view displayAlertWithMessage:@"Boundary Reached"];
     }
-    else if (snake[0].y == 20 || snake[0].y == 460)
+    else if (snake[0].y == 20.0 || snake[0].y == 460.0)
     {
         if (!self.mute)
         {

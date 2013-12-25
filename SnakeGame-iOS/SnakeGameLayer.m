@@ -161,7 +161,7 @@
     for (int i = 0; i < game.lengthOfSnake; i++)
     {
         CGPoint start = [game getSnakePieceAtIndex:i];
-        CGPoint end = ccp(start.x + 20, start.y - 20);
+        CGPoint end = ccp(start.x + 20.0, start.y - 20.0);
         // Use greyscale if the game has been paused.
         if (game.paused)
         {
@@ -180,7 +180,7 @@
 - (void) drawItem
 {
     CGPoint start = ccp(game.item.x, game.item.y);
-    CGPoint end = ccp(game.item.x + 20, game.item.y - 20);
+    CGPoint end = ccp(game.item.x + 20.0, game.item.y - 20.0);
     // Use greyscale if the game has been paused.
     if (game.paused)
     {
@@ -199,7 +199,7 @@
 - (void) drawSlowDownPill
 {
     CGPoint start = ccp(game.pill.x, game.pill.y);
-    CGPoint end = ccp(game.pill.x + 20, game.pill.y - 20);
+    CGPoint end = ccp(game.pill.x + 20.0, game.pill.y - 20.0);
     // Use the black color
     glColor4f(0.0, 0.0, 0.0, 1.0);
     ccDrawSolidRect(start, end);
@@ -217,7 +217,7 @@
             if (j == 1 || j > 22 || ((j > 0 && j < 23) && (i == 0 || i == 15)))
             {
                 CCSprite *stone = [CCSprite spriteWithFile:@"stone.gif"];
-                stone.position = ccp(20*i + 10, 20*j - 10);
+                stone.position = ccp(20*i + 10.0, 20*j - 10.0);
                 [self addChild:stone];
             }
         }

@@ -42,7 +42,7 @@ typedef enum difficultyTypes
 {
     id<SnakeGameDelegate> _view;
     CGPoint snake[350];                                 // The snake, itself!
-    float acceleration;                                   // Depends on the difficulty level
+    float acceleration;                                 // Depends on the difficulty level
 }
 
 @property (nonatomic, assign) int level;                // Levels increase as the snake grows
