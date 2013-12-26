@@ -249,7 +249,6 @@
             [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
         }
         self.lives--;
-        NSLog(@"Your snake has %i lives remaining", self.lives);
         [_view unschedule:@selector(refresh:)];
         [_view displayAlertWithMessage:@"Boundary Reached"];
     }
@@ -260,7 +259,6 @@
             [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
         }
         self.lives--;
-        NSLog(@"Your snake has %i lives remaining", self.lives);
         [_view unschedule:@selector(refresh:)];
         [_view displayAlertWithMessage:@"Boundary Reached"];
     }
@@ -274,7 +272,6 @@
                 [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
             }
             self.lives--;
-            NSLog(@"Your snake has %i lives remaining", self.lives);
             [_view unschedule:@selector(refresh:)];
             [_view displayAlertWithMessage:@"Self-intersection detected"];
         }
@@ -283,7 +280,6 @@
     // that are currently available get removed from the board.
     if (snake[0].x == self.item.x && snake[0].y == self.item.y)
     {
-        NSLog(@"Item collected!");
         self.points++;
         self.pill = ccp(-20.0, -20.0);
         // THe game will proceed to the next level after gaining a certain
