@@ -33,10 +33,14 @@
         levelLabel.color = ccBLACK;
         levelLabel.position =  ccp(160.0, 460.0);
         [self addChild:levelLabel];
-        pointsLabel = [CCLabelTTF labelWithString:@"Points Unknown" fontName:@"Marker Felt" fontSize:25];
-        pointsLabel.color = ccBLUE;
-        pointsLabel.position =  ccp(260.0, 460.0);
+        pointsLabel = [CCLabelTTF labelWithString:@"Points Unknown" fontName:@"Marker Felt" fontSize:18];
+        pointsLabel.color = ccRED;
+        pointsLabel.position =  ccp(260.0, 470.0);
         [self addChild:pointsLabel];
+        livesLabel = [CCLabelTTF labelWithString:@"Lives Unknown" fontName:@"Marker Felt" fontSize:18];
+        livesLabel.color = ccBLUE;
+        livesLabel.position =  ccp(260.0, 450.0);
+        [self addChild:livesLabel];
         pauseon = [CCMenuItemImage itemFromNormalImage:@"play.png" selectedImage:@"play.png"];
         pauseoff = [CCMenuItemImage itemFromNormalImage:@"pause.png" selectedImage:@"pause.png"];
         pauseButton = [CCMenuItemToggle itemWithBlock:^(id sender)
@@ -126,7 +130,8 @@
 - (void) updateLabels
 {
     levelLabel.string = [NSString stringWithFormat:@"Level %i", game.level];
-    pointsLabel.string = [NSString stringWithFormat:@"%i", game.points];
+    pointsLabel.string = [NSString stringWithFormat:@"%i points", game.points];
+    livesLabel.string = [NSString stringWithFormat:@"%i lives", game.lives];
 }
 
 - (void) drawBackground

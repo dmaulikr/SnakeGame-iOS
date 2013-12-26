@@ -277,7 +277,6 @@
             NSLog(@"Your snake has %i lives remaining", self.lives);
             [_view unschedule:@selector(refresh:)];
             [_view displayAlertWithMessage:@"Self-intersection detected"];
-            return;
         }
     }
     // The snake gains points if it collects an item and any slow down pills
@@ -321,7 +320,6 @@
             // Record the current position of the snake
             [self captureSnapshot];
         }
-        [_view updateLabels];
     }
     // The snake slows down a bit if it collects a slow down pill
     if (snake[0].x == self.pill.x && snake[0].y == self.pill.y)
@@ -333,6 +331,7 @@
         self.pill = ccp(-20.0, -20.0);
         [self setSpeed:self.speed+acceleration*0.020];
     }
+    [_view updateLabels];
 }
 
 @end

@@ -30,6 +30,7 @@
     SnakeGameModel *game;
     CCLabelTTF *levelLabel;
     CCLabelTTF *pointsLabel;
+    CCLabelTTF *livesLabel;
     float bgcolors[6][4];
     UIAlertView *alert;
     CCMenuItem *pauseon, *pauseoff;
