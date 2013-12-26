@@ -48,7 +48,7 @@
 {
     self.level = 1;
     self.points = 0;
-    self.lives = 5;
+    self.lives = 10;
     [_view updateLabels];
     _speed = 0.275;
     self.startPoint = ccp(20.0*5.0, 20.0*2.0);
@@ -299,8 +299,6 @@
             [self createItem];
             // Offer one slow down pill at the start of each level
             [self createSlowDownPill];
-            // Record the current position of the snake
-            [self captureSnapshot];
         }
         else
         {
@@ -313,7 +311,17 @@
             self.lengthOfSnake++;
             // Spawn the next item
             [self createItem];
-            // Record the current position of the snake
+        }
+        // Record the current position and direction of the snake but
+        // don't do this if the collected item was located on an edge AND the
+        // the snake was moving towards that edge.  This prevents the player
+        // from dying repeatedly if the snake hits the wall immediately after
+        // collecting the item.
+        if (!((snake[0].x == 20.0 && self.direction == BACKWARD) ||
+              (snake[0].x == 280.0 && self.direction == FORWARD) ||
+              (snake[0].y == 40.0 && self.direction == DOWNWARD) ||
+              (snake[0].y == 440.0 && self.direction == UPWARD)))
+        {
             [self captureSnapshot];
         }
     }
