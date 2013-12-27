@@ -164,6 +164,8 @@
             }
         }
     }
+    // Remove the slow down pill after ten seconds!
+    [_view scheduleOnce:@selector(removeSlowDownPill) delay:10.0];
 }
 
 // Moves the snake one tile ahead in the current direction
@@ -282,7 +284,7 @@
     if (snake[0].x == self.item.x && snake[0].y == self.item.y)
     {
         self.points++;
-        self.pill = ccp(-20.0, -20.0);
+        [_view removeSlowDownPill];
         // THe game will proceed to the next level after gaining a certain
         // number of points.  The speed will also increase, accordingly.
         if (self.points > 0 && self.points % 5 == 0)
@@ -333,8 +335,7 @@
         {
             [[SimpleAudioEngine sharedEngine] playEffect:@"pill.wav"];
         }
-        // Remove the slow down pill
-        self.pill = ccp(-20.0, -20.0);
+        [_view removeSlowDownPill];
         [self setSpeed:self.speed+acceleration*0.020];
     }
     [_view updateLabels];

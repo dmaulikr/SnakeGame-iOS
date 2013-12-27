@@ -46,6 +46,7 @@
 - (void) displayAlertWithMessage:(NSString *)message;
 - (void) updateLabels;
 - (void) toggleDirectionArrows;
+- (void) removeSlowDownPill;
 - (void) drawBackground;
 - (void) drawGrid;
 - (void) drawSnake;

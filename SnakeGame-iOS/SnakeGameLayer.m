@@ -170,6 +170,15 @@
     }
 }
 
+// Kind of silly but this is the only way that I know how
+// to implement a timed slow down pill.  Ideally, I would have
+// liked to have this in the model but that won't respond to
+// Cocos2d schedule calls, unfortunately.
+- (void) removeSlowDownPill
+{
+    game.pill = ccp(-20.0, -20.0);
+}
+
 - (void) drawBackground
 {
     // Use greyscale if the game has been paused.
