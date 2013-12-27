@@ -252,6 +252,8 @@
             [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
         }
         self.lives--;
+        [_view updateLabels];
+        [_view removeSlowDownPill];
         [_view unschedule:@selector(update:)];
         [_view displayAlertWithMessage:@"Boundary Reached"];
     }
@@ -262,6 +264,8 @@
             [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
         }
         self.lives--;
+        [_view updateLabels];
+        [_view removeSlowDownPill];
         [_view unschedule:@selector(update:)];
         [_view displayAlertWithMessage:@"Boundary Reached"];
     }
@@ -275,11 +279,14 @@
                 [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
             }
             self.lives--;
+            [_view updateLabels];
+            [_view removeSlowDownPill];
             [_view unschedule:@selector(update:)];
             [_view displayAlertWithMessage:@"Self-intersection detected"];
+            break;
         }
     }
-    // The snake gains points if it collects an item and any slow down pills
+    // The snake gains points if it collects an item. Any slow down pills
     // that are currently available get removed from the board.
     if (snake[0].x == self.item.x && snake[0].y == self.item.y)
     {
@@ -327,6 +334,7 @@
         {
             [self captureSnapshot];
         }
+        [_view updateLabels];
     }
     // The snake slows down a bit if it collects a slow down pill
     if (snake[0].x == self.pill.x && snake[0].y == self.pill.y)
@@ -338,7 +346,6 @@
         [_view removeSlowDownPill];
         [self setSpeed:self.speed+acceleration*0.020];
     }
-    [_view updateLabels];
 }
 
 @end
