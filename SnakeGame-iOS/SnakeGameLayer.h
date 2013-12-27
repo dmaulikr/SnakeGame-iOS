@@ -37,6 +37,7 @@
     CCMenuItemToggle *pauseButton;
     CCMenuItem *muteon, *muteoff;
     CCMenuItemToggle *muteButton;
+    CCSprite *up, *down, *left, *right;
 }
 
 +(CCScene *) sceneWithDifficulty:(Difficulty)difficulty;
@@ -45,6 +46,7 @@
 - (void) displayAlertWithMessage:(NSString *)message;
 - (void) refresh:(ccTime)t;
 - (void) updateLabels;
+- (void) toggleDirectionArrows;
 - (void) drawBackground;
 - (void) drawGrid;
 - (void) drawSnake;

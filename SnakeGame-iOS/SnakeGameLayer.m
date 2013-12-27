@@ -41,6 +41,26 @@
         livesLabel.color = ccBLUE;
         livesLabel.position =  ccp(260.0, 450.0);
         [self addChild:livesLabel];
+        up = [CCSprite spriteWithFile:@"up.png"];
+        up.position = ccp(160.0, 240.0);
+        up.scale = 2.0;
+        up.visible = NO;
+        [self addChild:up];
+        down = [CCSprite spriteWithFile:@"down.png"];
+        down.position = ccp(160.0, 240.0);
+        down.scale = 2.0;
+        down.visible = NO;
+        [self addChild:down];
+        left = [CCSprite spriteWithFile:@"left.png"];
+        left.position = ccp(160.0, 240.0);
+        left.scale = 2.0;
+        left.visible = NO;
+        [self addChild:left];
+        right = [CCSprite spriteWithFile:@"right.png"];
+        right.position = ccp(160.0, 240.0);
+        right.scale = 2.0;
+        right.visible = NO;
+        [self addChild:right];
         pauseon = [CCMenuItemImage itemFromNormalImage:@"play.png" selectedImage:@"play.png"];
         pauseoff = [CCMenuItemImage itemFromNormalImage:@"pause.png" selectedImage:@"pause.png"];
         pauseButton = [CCMenuItemToggle itemWithBlock:^(id sender)
@@ -108,7 +128,6 @@
     {
         [[SimpleAudioEngine sharedEngine] playEffect:@"button.wav"];
     }
-    game.paused = YES;
     if (game.lives)
     {
         [game revertToLastSnapshot];
@@ -117,6 +136,7 @@
     {
         [game resetGame];
     }
+    game.paused = YES;
     pauseButton.selectedIndex = 0;
 }
 
@@ -132,6 +152,22 @@
     levelLabel.string = [NSString stringWithFormat:@"Level %i", game.level];
     pointsLabel.string = [NSString stringWithFormat:@"%i points", game.points];
     livesLabel.string = [NSString stringWithFormat:@"%i lives", game.lives];
+}
+
+// Turns on/off the direction arrows if paused
+- (void) toggleDirectionArrows
+{
+    if (game.paused)
+    {
+        if (game.direction == UPWARD) up.visible = YES;
+        else if (game.direction == DOWNWARD) down.visible = YES;
+        else if (game.direction == FORWARD) right.visible = YES;
+        else if (game.direction == BACKWARD) left.visible = YES;
+    }
+    else
+    {
+        up.visible = down.visible = right.visible = left.visible = NO;
+    }
 }
 
 - (void) drawBackground

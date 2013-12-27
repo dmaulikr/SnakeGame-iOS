@@ -146,6 +146,10 @@
 		98A69CEE1855A3A5006E113A /* tutorial.png in Resources */ = {isa = PBXBuildFile; fileRef = 98A69CE51855A3A4006E113A /* tutorial.png */; };
 		98EDDD491853B594006FB049 /* stone.gif in Resources */ = {isa = PBXBuildFile; fileRef = 98EDDD481853B594006FB049 /* stone.gif */; };
 		98EDDD4B1853B6E6006FB049 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 98EDDD4A1853B6E6006FB049 /* pause.png */; };
+		98F148E5186CF88D00EC8394 /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = 98F148E1186CF88D00EC8394 /* down.png */; };
+		98F148E6186CF88D00EC8394 /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = 98F148E2186CF88D00EC8394 /* left.png */; };
+		98F148E7186CF88D00EC8394 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = 98F148E3186CF88D00EC8394 /* right.png */; };
+		98F148E8186CF88D00EC8394 /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = 98F148E4186CF88D00EC8394 /* up.png */; };
 		98F608501867C29200D28A6F /* MenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F6084F1867C29200D28A6F /* MenuLayer.m */; };
 /* End PBXBuildFile section */
 
@@ -411,6 +415,10 @@
 		98A69CE51855A3A4006E113A /* tutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tutorial.png; path = Resources/tutorial.png; sourceTree = "<group>"; };
 		98EDDD481853B594006FB049 /* stone.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = stone.gif; path = Resources/stone.gif; sourceTree = "<group>"; };
 		98EDDD4A1853B6E6006FB049 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pause.png; path = Resources/pause.png; sourceTree = "<group>"; };
+		98F148E1186CF88D00EC8394 /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = down.png; path = Resources/down.png; sourceTree = "<group>"; };
+		98F148E2186CF88D00EC8394 /* left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = left.png; path = Resources/left.png; sourceTree = "<group>"; };
+		98F148E3186CF88D00EC8394 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = right.png; path = Resources/right.png; sourceTree = "<group>"; };
+		98F148E4186CF88D00EC8394 /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = up.png; path = Resources/up.png; sourceTree = "<group>"; };
 		98F6084E1867C29100D28A6F /* MenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuLayer.h; sourceTree = "<group>"; };
 		98F6084F1867C29200D28A6F /* MenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -502,6 +510,10 @@
 				98A69CDE1855A3A4006E113A /* buttons.png */,
 				98A69CDF1855A3A4006E113A /* easy.png */,
 				98A69CE01855A3A4006E113A /* hard.png */,
+				98F148E1186CF88D00EC8394 /* down.png */,
+				98F148E2186CF88D00EC8394 /* left.png */,
+				98F148E3186CF88D00EC8394 /* right.png */,
+				98F148E4186CF88D00EC8394 /* up.png */,
 				98A69CE11855A3A4006E113A /* highscores.png */,
 				98A69CE21855A3A4006E113A /* nightmare.png */,
 				98A69CE31855A3A4006E113A /* normal.png */,
@@ -920,6 +932,10 @@
 				98A69CED1855A3A5006E113A /* playgame.png in Resources */,
 				98A69CEE1855A3A5006E113A /* tutorial.png in Resources */,
 				984B72CC18676632004003EA /* pill.wav in Resources */,
+				98F148E5186CF88D00EC8394 /* down.png in Resources */,
+				98F148E6186CF88D00EC8394 /* left.png in Resources */,
+				98F148E7186CF88D00EC8394 /* right.png in Resources */,
+				98F148E8186CF88D00EC8394 /* up.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

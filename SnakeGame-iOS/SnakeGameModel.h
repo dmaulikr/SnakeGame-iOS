@@ -34,6 +34,7 @@ typedef enum difficultyTypes
 - (void) unschedule:(SEL)selector;
 - (void) schedule:(SEL)selector interval:(ccTime)interval;
 - (void) updateLabels;
+- (void) toggleDirectionArrows;
 - (void) displayAlertWithMessage:(NSString *)message;
 
 @end

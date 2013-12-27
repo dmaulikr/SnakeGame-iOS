@@ -81,6 +81,7 @@
     {
         [_view schedule:@selector(refresh:) interval:_speed];
     }
+    [_view toggleDirectionArrows];
 }
 
 // Change the speed of the snake's motion by doing more/less frequent updates.
