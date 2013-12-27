@@ -141,7 +141,7 @@
 }
 
 // This is the main engine that drives the game animation
-- (void) refresh:(ccTime)t
+- (void) update:(ccTime)t
 {
     [game updateGameState];
 }

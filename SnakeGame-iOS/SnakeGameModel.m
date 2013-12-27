@@ -75,11 +75,11 @@
     _paused = option;
     if (option)
     {
-        [_view unschedule:@selector(refresh:)];
+        [_view unschedule:@selector(update:)];
     }
     else
     {
-        [_view schedule:@selector(refresh:) interval:_speed];
+        [_view schedule:@selector(update:) interval:_speed];
     }
     [_view toggleDirectionArrows];
 }
@@ -88,8 +88,8 @@
 - (void) setSpeed:(float)s
 {
     _speed = s;
-    [_view unschedule:@selector(refresh:)];
-    [_view schedule:@selector(refresh:) interval:s];
+    [_view unschedule:@selector(update:)];
+    [_view schedule:@selector(update:) interval:s];
 }
 
 // This method was necessary because I didn't know how to declare
@@ -250,7 +250,7 @@
             [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
         }
         self.lives--;
-        [_view unschedule:@selector(refresh:)];
+        [_view unschedule:@selector(update:)];
         [_view displayAlertWithMessage:@"Boundary Reached"];
     }
     else if (snake[0].y == 20.0 || snake[0].y == 460.0)
@@ -260,7 +260,7 @@
             [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
         }
         self.lives--;
-        [_view unschedule:@selector(refresh:)];
+        [_view unschedule:@selector(update:)];
         [_view displayAlertWithMessage:@"Boundary Reached"];
     }
     // The game is over if the snake touches its own tail.
@@ -273,7 +273,7 @@
                 [[SimpleAudioEngine sharedEngine] playEffect:@"gameover.wav"];
             }
             self.lives--;
-            [_view unschedule:@selector(refresh:)];
+            [_view unschedule:@selector(update:)];
             [_view displayAlertWithMessage:@"Self-intersection detected"];
         }
     }
@@ -333,6 +333,7 @@
         {
             [[SimpleAudioEngine sharedEngine] playEffect:@"pill.wav"];
         }
+        // Remove the slow down pill
         self.pill = ccp(-20.0, -20.0);
         [self setSpeed:self.speed+acceleration*0.020];
     }

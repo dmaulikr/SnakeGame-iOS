@@ -44,7 +44,6 @@
 
 -(id) initWithDifficulty:(Difficulty)difficulty;
 - (void) displayAlertWithMessage:(NSString *)message;
-- (void) refresh:(ccTime)t;
 - (void) updateLabels;
 - (void) toggleDirectionArrows;
 - (void) drawBackground;
