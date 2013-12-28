@@ -338,6 +338,11 @@
     // Choose one of the touches to work with
     UITouch *touch = [touches anyObject];
     CGPoint location = [self convertTouchToNodeSpace:touch];
+    // Discard any touches that occur on the boundaries
+    if (location.x < 20.0 || location.x > 300.0 || location.y < 20.0 || location.y > 440.0)
+    {
+        return;
+    }
     [game updateDirectionWithTouch:location];
     if (game.paused)
     {

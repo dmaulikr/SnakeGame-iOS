@@ -212,7 +212,8 @@
     direction_snapshot = self.direction;
 }
 
-// Update direction of snake motion based on touch location
+// Update direction of snake motion based on touch location.  This code
+// could definitely afford to be rewritten to make it less verbose!
 - (void) updateDirectionWithTouch:(CGPoint)location
 {
     if ((location.y > snake[0].y) && (snake[0].x != snake[1].x))
