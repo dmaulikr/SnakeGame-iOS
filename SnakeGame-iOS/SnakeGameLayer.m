@@ -154,15 +154,40 @@
     livesLabel.string = [NSString stringWithFormat:@"%i lives", game.lives];
 }
 
-// Turns on/off the direction arrows if paused
+// Displays/hides the direction arrows if paused/running
 - (void) toggleDirectionArrows
 {
     if (game.paused)
     {
-        if (game.direction == UPWARD) up.visible = YES;
-        else if (game.direction == DOWNWARD) down.visible = YES;
-        else if (game.direction == FORWARD) right.visible = YES;
-        else if (game.direction == BACKWARD) left.visible = YES;
+        switch (game.direction)
+        {
+            case UPWARD:
+                up.visible = YES;
+                down.visible = NO;
+                right.visible = NO;
+                left.visible = NO;
+                break;
+            case DOWNWARD:
+                up.visible = NO;
+                down.visible = YES;
+                right.visible = NO;
+                left.visible = NO;
+                break;
+            case FORWARD:
+                up.visible = NO;
+                down.visible = NO;
+                right.visible = YES;
+                left.visible = NO;
+                break;
+            case BACKWARD:
+                up.visible = NO;
+                down.visible = NO;
+                right.visible = NO;
+                left.visible = YES;
+                break;
+            default:
+                break;
+        }
     }
     else
     {
@@ -310,15 +335,14 @@
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    // Don't respond to touches if the game is paused.
-    if (game.paused)
-    {
-        return;
-    }
     // Choose one of the touches to work with
     UITouch *touch = [touches anyObject];
     CGPoint location = [self convertTouchToNodeSpace:touch];
     [game updateDirectionWithTouch:location];
+    if (game.paused)
+    {
+        [self toggleDirectionArrows];
+    }
 }
 
 - (void) dealloc

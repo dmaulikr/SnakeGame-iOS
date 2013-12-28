@@ -8,17 +8,16 @@
 
 /* Additional features:
  
-    1.  One slow down pill per level (available for 30 seconds).
-    2.  Currently, the points are determined by the number of items collected
+    1.  Currently, the points are determined by the number of items collected
         but maybe, we can simply use this for level progression, and count the
         points based on other factors such as each square moved.
-    3.  High scores table.
-    4.  Implement ability to save games.
-    5.  For higher levels, insert death squares randomly.
-    6.  Add Menu screen with options to view high scores, go through tutorial, choose between four difficulty levels (easy, normal, hard, and nightmare), and load saved games.
-    7.  Implement difficulty levels: Easy, Normal, Hard, Nightmare (will affect rate of game progression).
-    8.  One Up pill per level (available for 30 seconds).
-    9.  Create tutorial screen (a live demonstation would be really cool!)
+    2.  High scores table.
+    3.  Implement ability to save games.
+    4.  For higher levels, insert death squares randomly.
+    5.  Add Menu screen with options to view high scores, go through tutorial, choose between four difficulty levels (easy, normal, hard, and nightmare), and load saved games.
+    6.  Implement difficulty levels: Easy, Normal, Hard, Nightmare (will affect rate of game progression).
+    7.  One Up pill per level (available for 30 seconds).
+    8.  Create tutorial screen (a live demonstation would be really cool!)
  
  */
 

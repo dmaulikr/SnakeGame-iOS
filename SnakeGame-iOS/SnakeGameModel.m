@@ -215,27 +215,37 @@
 // Update direction of snake motion based on touch location
 - (void) updateDirectionWithTouch:(CGPoint)location
 {
-    if (self.direction == FORWARD || self.direction == BACKWARD)
+    if ((location.y > snake[0].y) && (snake[0].x != snake[1].x))
     {
-        if (location.y > snake[0].y)
-        {
-            self.direction = UPWARD;
-        }
-        else if (location.y < snake[0].y - 20.0)
-        {
-            self.direction = DOWNWARD;
-        }
+        self.direction = UPWARD;
     }
-    else if (self.direction == UPWARD || self.direction == DOWNWARD)
+    else if ((location.y < snake[0].y - 20.0) && (snake[0].x != snake[1].x))
     {
-        if (location.x > snake[0].x + 20.0)
-        {
-            self.direction = FORWARD;
-        }
-        else if (location.x < snake[0].x)
-        {
-            self.direction = BACKWARD;
-        }
+        self.direction = DOWNWARD;
+    }
+    else if ((location.x > snake[0].x + 20.0) && (snake[0].x > snake[1].x))
+    {
+        self.direction = FORWARD;
+    }
+    else if ((location.x < snake[0].x) && (snake[0].x < snake[1].x))
+    {
+        self.direction = BACKWARD;
+    }
+    else if ((location.x > snake[0].x + 20.0) && (snake[0].y != snake[1].y))
+    {
+        self.direction = FORWARD;
+    }
+    else if ((location.x < snake[0].x) && (snake[0].y != snake[1].y))
+    {
+        self.direction = BACKWARD;
+    }
+    else if ((location.y > snake[0].y + 20.0) && (snake[0].y > snake[1].y))
+    {
+        self.direction = UPWARD;
+    }
+    else if ((location.y < snake[0].y) && (snake[0].y < snake[1].y))
+    {
+        self.direction = DOWNWARD;
     }
 }
 
