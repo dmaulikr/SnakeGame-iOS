@@ -50,7 +50,7 @@
     self.points = 0;
     self.lives = 10;
     [_view updateLabels];
-    _speed = 0.275;
+    self.speed = 0.275;
     self.startPoint = ccp(20.0*5.0, 20.0*2.0);
     self.direction = FORWARD;
     self.lengthOfSnake = 4;
@@ -75,11 +75,11 @@
     _paused = option;
     if (option)
     {
-        [_view unschedule:@selector(update:)];
+        [_view pauseSchedulerAndActions];
     }
     else
     {
-        [_view schedule:@selector(update:) interval:_speed];
+        [_view resumeSchedulerAndActions];
     }
     [_view toggleDirectionArrows];
 }
@@ -265,7 +265,7 @@
         self.lives--;
         [_view updateLabels];
         [_view removeSlowDownPill];
-        [_view unschedule:@selector(update:)];
+        self.paused = YES;
         [_view displayAlertWithMessage:@"Boundary Reached"];
     }
     else if (snake[0].y == 20.0 || snake[0].y == 460.0)
@@ -277,7 +277,7 @@
         self.lives--;
         [_view updateLabels];
         [_view removeSlowDownPill];
-        [_view unschedule:@selector(update:)];
+        self.paused = YES;
         [_view displayAlertWithMessage:@"Boundary Reached"];
     }
     // The game is over if the snake touches its own tail.
@@ -292,7 +292,7 @@
             self.lives--;
             [_view updateLabels];
             [_view removeSlowDownPill];
-            [_view unschedule:@selector(update:)];
+            self.paused = YES;
             [_view displayAlertWithMessage:@"Self-intersection detected"];
             break;
         }

@@ -108,8 +108,8 @@
                 bgcolors[i][j] = [[colorComponents objectAtIndex:j] floatValue];
             }
         }
-        game.paused = YES;
         [game resetGame];
+        game.paused = YES;
 	}
 	return self;
 }
@@ -136,14 +136,16 @@
     {
         [game resetGame];
     }
-    game.paused = YES;
     pauseButton.selectedIndex = 0;
 }
 
 // This is the main engine that drives the game animation
 - (void) update:(ccTime)t
 {
-    [game updateGameState];
+    if (!game.paused)
+    {
+        [game updateGameState];
+    }
 }
 
 // Convenience method for updating labels

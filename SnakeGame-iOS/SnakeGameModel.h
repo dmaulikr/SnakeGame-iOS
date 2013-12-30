@@ -34,6 +34,8 @@ typedef enum difficultyTypes
 - (void) unschedule:(SEL)selector;
 - (void) schedule:(SEL)selector interval:(ccTime)interval;
 - (void) scheduleOnce:(SEL) selector delay:(ccTime) delay;
+- (void) pauseSchedulerAndActions;
+- (void) resumeSchedulerAndActions;
 - (void) updateLabels;
 - (void) toggleDirectionArrows;
 - (void) removeSlowDownPill;
