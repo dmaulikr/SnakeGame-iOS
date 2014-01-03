@@ -126,6 +126,7 @@
 		982C739017420A2200045EFB /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 982C738F17420A2200045EFB /* RootViewController.m */; };
 		982C739317420A2200045EFB /* SnakeGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 982C739217420A2200045EFB /* SnakeGameLayer.m */; };
 		984B72CC18676632004003EA /* pill.wav in Resources */ = {isa = PBXBuildFile; fileRef = 984B72CB18676632004003EA /* pill.wav */; };
+		989AFB4E1876A1EA0094FDA0 /* CustomDrawNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 989AFB4D1876A1EA0094FDA0 /* CustomDrawNode.m */; };
 		989D3ED01748CA4A00D7FF73 /* theme.wav in Resources */ = {isa = PBXBuildFile; fileRef = 989D3ECF1748CA4A00D7FF73 /* theme.wav */; };
 		989D3ED31748CBF300D7FF73 /* collect.wav in Resources */ = {isa = PBXBuildFile; fileRef = 989D3ED21748CBF300D7FF73 /* collect.wav */; };
 		989D3ED61748CE8C00D7FF73 /* gameover.wav in Resources */ = {isa = PBXBuildFile; fileRef = 989D3ED41748CE8C00D7FF73 /* gameover.wav */; };
@@ -395,6 +396,8 @@
 		982C739217420A2200045EFB /* SnakeGameLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnakeGameLayer.m; sourceTree = "<group>"; };
 		982C739417420A2200045EFB /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		984B72CB18676632004003EA /* pill.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = pill.wav; path = Resources/pill.wav; sourceTree = "<group>"; };
+		989AFB4C1876A1EA0094FDA0 /* CustomDrawNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDrawNode.h; sourceTree = "<group>"; };
+		989AFB4D1876A1EA0094FDA0 /* CustomDrawNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomDrawNode.m; sourceTree = "<group>"; };
 		989D3ECF1748CA4A00D7FF73 /* theme.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = theme.wav; path = Resources/theme.wav; sourceTree = "<group>"; };
 		989D3ED21748CBF300D7FF73 /* collect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = collect.wav; path = Resources/collect.wav; sourceTree = "<group>"; };
 		989D3ED41748CE8C00D7FF73 /* gameover.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = gameover.wav; path = Resources/gameover.wav; sourceTree = "<group>"; };
@@ -485,6 +488,8 @@
 				98093A0818432A9E00817169 /* SnakeGameModel.m */,
 				982C739117420A2200045EFB /* SnakeGameLayer.h */,
 				982C739217420A2200045EFB /* SnakeGameLayer.m */,
+				989AFB4C1876A1EA0094FDA0 /* CustomDrawNode.h */,
+				989AFB4D1876A1EA0094FDA0 /* CustomDrawNode.m */,
 				98F6084E1867C29100D28A6F /* MenuLayer.h */,
 				98F6084F1867C29200D28A6F /* MenuLayer.m */,
 				982C739417420A2200045EFB /* GameConfig.h */,
@@ -1047,6 +1052,7 @@
 				982C739317420A2200045EFB /* SnakeGameLayer.m in Sources */,
 				98093A0918432A9E00817169 /* SnakeGameModel.m in Sources */,
 				98F608501867C29200D28A6F /* MenuLayer.m in Sources */,
+				989AFB4E1876A1EA0094FDA0 /* CustomDrawNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

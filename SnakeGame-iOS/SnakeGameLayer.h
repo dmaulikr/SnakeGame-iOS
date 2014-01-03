@@ -23,6 +23,7 @@
 
 #import "cocos2d.h"
 #import "SnakeGameModel.h"
+#import "CustomDrawNode.h"
 
 @interface SnakeGameLayer : CCLayer <UIAlertViewDelegate, SnakeGameDelegate>
 {
@@ -30,7 +31,6 @@
     CCLabelTTF *levelLabel;
     CCLabelTTF *pointsLabel;
     CCLabelTTF *livesLabel;
-    float bgcolors[6][4];
     UIAlertView *alert;
     CCMenuItem *pauseon, *pauseoff;
     CCMenuItemToggle *pauseButton;
@@ -46,13 +46,6 @@
 - (void) updateLabels;
 - (void) toggleDirectionArrows;
 - (void) removeSlowDownPill;
-- (void) drawBackground;
-- (void) drawGrid;
-- (void) drawSnake;
-- (void) drawItem;
-- (void) drawSlowDownPill;
 - (void) drawBrickWall;
-
-void ccFilledRect(CGPoint v1, CGPoint v2);
 
 @end
