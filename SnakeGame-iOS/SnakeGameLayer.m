@@ -130,7 +130,7 @@
     }
     if (game.lives)
     {
-        [game revertToLastSnapshot];
+        [game spawnSnakeFromBoundary];
     }
     else
     {

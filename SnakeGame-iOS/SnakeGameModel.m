@@ -59,16 +59,6 @@
     self.pill = ccp(-20.0, -20.0);
 }
 
-// Revert to the previous snapshot
-- (void) revertToLastSnapshot
-{
-    for (int i = 0; i < self.lengthOfSnake; i++)
-    {
-        snake[i] = snake_snapshot[i];
-    }
-    self.direction = direction_snapshot;
-}
-
 // Pauses/continues the game
 - (void) setPaused:(BOOL)option
 {
@@ -107,7 +97,6 @@
     {
         snake[i] = ccp(self.startPoint.x-20.0*i, self.startPoint.y);
     }
-    [self captureSnapshot];
 }
 
 // Create a new item in a random location such that it does not
@@ -201,15 +190,71 @@
     }
 }
 
-// Stores a snapshot of the snake's current position
-// and direction in order to revert back to it later
-- (void) captureSnapshot
+// Spawn snake from one of the walls after dying to give
+// the player a proper chance to get out of impossible situations
+// like dead-end self-intersections.
+- (void) spawnSnakeFromBoundary
 {
-    for (int i = 0; i < self.lengthOfSnake; i++)
+    // First, randomly pick a spawning direction
+    Direction d = (Direction)arc4random() % 4;
+    // Then, build the snake's tail in the opposite direction
+    while (1)
     {
-        snake_snapshot[i] = snake[i];
+        int x, y;
+        if (d == FORWARD)
+        {
+            x = 1;
+            y = arc4random() % 21 + 2;
+            for (int i = 1; i < self.lengthOfSnake; i++)
+            {
+                snake[i] = ccp(20.0 * (x-i), 20.0 * y);
+            }
+        }
+        else if (d == BACKWARD)
+        {
+            x = 14;
+            y = arc4random() % 21 + 2;
+            for (int i = 1; i < self.lengthOfSnake; i++)
+            {
+                snake[i] = ccp(20.0 * (x+i), 20.0 * y);
+            }
+        }
+        else if (d == UPWARD)
+        {
+            x = arc4random() % 14 + 1;
+            y = 2;
+            for (int i = 1; i < self.lengthOfSnake; i++)
+            {
+                snake[i] = ccp(20.0 * x, 20.0 * (y-i));
+            }
+        }
+        else if (d == DOWNWARD)
+        {
+            x = arc4random() % 14 + 1;
+            y = 22;
+            for (int i = 1; i < self.lengthOfSnake; i++)
+            {
+                snake[i] = ccp(20.0 * x, 20.0 * (y+i));
+            }
+        }
+        // Check if the position of the snake's head is valid
+        CGPoint position = ccp(20.0 * x, 20.0 * y);
+        if (position.x == self.item.x && position.y == self.item.y)
+        {
+            continue;
+        }
+        else if (position.x == self.pill.x && position.y == self.pill.y)
+        {
+            continue;
+        }
+        else
+        {
+            snake[0] = position;
+            self.direction = d;
+            [_view toggleDirectionArrows];
+            break;
+        }
     }
-    direction_snapshot = self.direction;
 }
 
 // Update direction of snake motion based on touch location.  This code
@@ -332,18 +377,6 @@
             self.lengthOfSnake++;
             // Spawn the next item
             [self createItem];
-        }
-        // Record the current position and direction of the snake but
-        // don't do this if the collected item was located on an edge AND the
-        // the snake was moving towards that edge.  This prevents the player
-        // from dying repeatedly if the snake hits the wall immediately after
-        // collecting the item.
-        if (!((snake[0].x == 20.0 && self.direction == BACKWARD) ||
-              (snake[0].x == 280.0 && self.direction == FORWARD) ||
-              (snake[0].y == 40.0 && self.direction == DOWNWARD) ||
-              (snake[0].y == 440.0 && self.direction == UPWARD)))
-        {
-            [self captureSnapshot];
         }
         [_view updateLabels];
     }
