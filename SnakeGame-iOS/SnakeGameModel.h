@@ -37,6 +37,7 @@ typedef enum difficultyTypes
 - (void) pauseSchedulerAndActions;
 - (void) resumeSchedulerAndActions;
 - (void) updateLabels;
+- (void) updateBackground;
 - (void) toggleDirectionArrows;
 - (void) removeSlowDownPill;
 - (void) displayAlertWithMessage:(NSString *)message;

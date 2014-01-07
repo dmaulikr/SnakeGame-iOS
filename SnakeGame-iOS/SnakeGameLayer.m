@@ -28,6 +28,9 @@
         alert = [[UIAlertView alloc] initWithTitle:@"Snake Game" message:nil
                                           delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         game = [[SnakeGameModel alloc] initWithView:self difficulty:difficulty];
+        bg = [CCSprite spriteWithFile:@"greybg.jpg"];
+        bg.position = ccp(160.0, 240.0);
+        [self addChild:bg];
         CustomDrawNode *node = [[CustomDrawNode alloc] initWithGame:game];
         node.position = ccp(0.0, 0.0);
         [self addChild:node];
@@ -99,6 +102,18 @@
         CCMenu *menu = [CCMenu menuWithItems:pauseButton, muteButton, nil];
         menu.position = CGPointZero;
         [self addChild:menu];
+        // We need to pre-load a list of background colors from a p-list
+        NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"config" ofType:@"plist"]];
+        NSArray *array = (NSArray *)[dictionary valueForKey:@"bgcolors"];
+        for (int i = 0; i < 6; i++)
+        {
+            NSString *color = (NSString *)[array objectAtIndex:i];
+            NSArray *colorComponents = [color componentsSeparatedByString:@","];
+            for (int j = 0; j < 4; j++)
+            {
+                bgcolors[i][j] = [[colorComponents objectAtIndex:j] floatValue];
+            }
+        }
         [game resetGame];
         game.paused = YES;
 	}
@@ -145,6 +160,24 @@
     levelLabel.string = [NSString stringWithFormat:@"Level %i", game.level];
     pointsLabel.string = [NSString stringWithFormat:@"%i points", game.points];
     livesLabel.string = [NSString stringWithFormat:@"%i lives", game.lives];
+}
+
+// Convenience method for updating the background color
+- (void) updateBackground
+{
+    // Use greyscale if the game has been paused.
+    if (game.paused)
+    {
+        bg.color = ccc3(102, 102, 102);
+    }
+    // Use one of the pre-loaded background colors.
+    else
+    {
+        GLubyte red = (GLubyte) ((bgcolors[(game.level-1) % 6][0] + 0.4) * 255);
+        GLubyte green = (GLubyte) ((bgcolors[(game.level-1) % 6][1] + 0.4) * 255);
+        GLubyte blue = (GLubyte) ((bgcolors[(game.level-1) % 6][2] + 0.4) * 255);
+        bg.color = ccc3(red, green, blue);
+    }
 }
 
 // Displays/hides the direction arrows if paused/running

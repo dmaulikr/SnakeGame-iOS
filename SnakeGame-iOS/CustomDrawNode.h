@@ -18,8 +18,6 @@
 }
 
 - (id) initWithGame:(SnakeGameModel *)g;
-- (void) drawBackground;
-- (void) drawGrid;
 - (void) drawSnake;
 - (void) drawItem;
 - (void) drawSlowDownPill;

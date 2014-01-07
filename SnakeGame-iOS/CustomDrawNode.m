@@ -31,41 +31,6 @@
     return self;
 }
 
-- (void) drawBackground
-{
-    // Use greyscale if the game has been paused.
-    if (game.paused)
-    {
-        glColor4f(0.1, 0.1, 0.1, 1.0);
-    }
-    // Use the pre-loaded background colors.
-    else
-    {
-        float red = bgcolors[(game.level-1) % 6][0];
-        float green = bgcolors[(game.level-1) % 6][1];
-        float blue = bgcolors[(game.level-1) % 6][2];
-        glColor4f(red, green, blue, 1.0);
-    }
-    CGPoint start = ccp(0.0, 480.0);
-    CGPoint end = ccp(320.0, 0.0);
-    ccDrawSolidRect(start, end);
-}
-
-- (void) drawGrid
-{
-    glColor4f(0.5, 0.5, 0.5, 1.0);
-    for (int i = 0; i < 16; i++)
-    {
-        float x = 20 * i;
-        ccDrawLine(ccp(x, 0.0), ccp(x, 480.0));
-    }
-    for (int j = 0; j < 24; j++)
-    {
-        float y = 20 * j;
-        ccDrawLine(ccp(0.0, y), ccp(320.0, y));
-    }
-}
-
 // Generates a gradient color for the snake's tail.
 - (void) drawSnake
 {
@@ -132,9 +97,7 @@
     {
         glLineWidth(2.0f);
     }
-    [self drawBackground];
     [self drawSnake];
-    [self drawGrid];
     [self drawItem];
     [self drawSlowDownPill];
     // Tell OpenGL to reset the color (to avoid scene transition tint effect)

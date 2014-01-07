@@ -18,6 +18,7 @@
     6.  Implement difficulty levels: Easy, Normal, Hard, Nightmare (will affect rate of game progression).
     7.  One Up pill per level (available for 30 seconds).
     8.  Create tutorial screen (a live demonstation would be really cool!)
+    9.  Implement swipe gestures to control the snake.
  
  */
 
@@ -28,6 +29,7 @@
 @interface SnakeGameLayer : CCLayer <UIAlertViewDelegate, SnakeGameDelegate>
 {
     SnakeGameModel *game;
+    float bgcolors[6][4];
     CCLabelTTF *levelLabel;
     CCLabelTTF *pointsLabel;
     CCLabelTTF *livesLabel;
@@ -37,6 +39,7 @@
     CCMenuItem *muteon, *muteoff;
     CCMenuItemToggle *muteButton;
     CCSprite *up, *down, *left, *right;
+    CCSprite *bg;
 }
 
 +(CCScene *) sceneWithDifficulty:(Difficulty)difficulty;
@@ -44,6 +47,7 @@
 -(id) initWithDifficulty:(Difficulty)difficulty;
 - (void) displayAlertWithMessage:(NSString *)message;
 - (void) updateLabels;
+- (void) updateBackground;
 - (void) toggleDirectionArrows;
 - (void) removeSlowDownPill;
 - (void) drawBrickWall;

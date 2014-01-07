@@ -126,6 +126,7 @@
 		982C739017420A2200045EFB /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 982C738F17420A2200045EFB /* RootViewController.m */; };
 		982C739317420A2200045EFB /* SnakeGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 982C739217420A2200045EFB /* SnakeGameLayer.m */; };
 		984B72CC18676632004003EA /* pill.wav in Resources */ = {isa = PBXBuildFile; fileRef = 984B72CB18676632004003EA /* pill.wav */; };
+		9852A1E3187BA8300044014E /* greybg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9852A1E2187BA8300044014E /* greybg.jpg */; };
 		989AFB4E1876A1EA0094FDA0 /* CustomDrawNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 989AFB4D1876A1EA0094FDA0 /* CustomDrawNode.m */; };
 		989D3ED01748CA4A00D7FF73 /* theme.wav in Resources */ = {isa = PBXBuildFile; fileRef = 989D3ECF1748CA4A00D7FF73 /* theme.wav */; };
 		989D3ED31748CBF300D7FF73 /* collect.wav in Resources */ = {isa = PBXBuildFile; fileRef = 989D3ED21748CBF300D7FF73 /* collect.wav */; };
@@ -396,6 +397,7 @@
 		982C739217420A2200045EFB /* SnakeGameLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnakeGameLayer.m; sourceTree = "<group>"; };
 		982C739417420A2200045EFB /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		984B72CB18676632004003EA /* pill.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = pill.wav; path = Resources/pill.wav; sourceTree = "<group>"; };
+		9852A1E2187BA8300044014E /* greybg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = greybg.jpg; path = Resources/greybg.jpg; sourceTree = "<group>"; };
 		989AFB4C1876A1EA0094FDA0 /* CustomDrawNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDrawNode.h; sourceTree = "<group>"; };
 		989AFB4D1876A1EA0094FDA0 /* CustomDrawNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomDrawNode.m; sourceTree = "<group>"; };
 		989D3ECF1748CA4A00D7FF73 /* theme.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = theme.wav; path = Resources/theme.wav; sourceTree = "<group>"; };
@@ -519,6 +521,7 @@
 				98F148E2186CF88D00EC8394 /* left.png */,
 				98F148E3186CF88D00EC8394 /* right.png */,
 				98F148E4186CF88D00EC8394 /* up.png */,
+				9852A1E2187BA8300044014E /* greybg.jpg */,
 				98A69CE11855A3A4006E113A /* highscores.png */,
 				98A69CE21855A3A4006E113A /* nightmare.png */,
 				98A69CE31855A3A4006E113A /* normal.png */,
@@ -941,6 +944,7 @@
 				98F148E6186CF88D00EC8394 /* left.png in Resources */,
 				98F148E7186CF88D00EC8394 /* right.png in Resources */,
 				98F148E8186CF88D00EC8394 /* up.png in Resources */,
+				9852A1E3187BA8300044014E /* greybg.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
