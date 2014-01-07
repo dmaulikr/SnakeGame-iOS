@@ -392,7 +392,7 @@
     {
         if (!self.mute)
         {
-            [[SimpleAudioEngine sharedEngine] playEffect:@"pill.wav"];
+            [[SimpleAudioEngine sharedEngine] playEffect:@"slowdown.wav"];
         }
         [_view removeSlowDownPill];
         [_view updateItems];
