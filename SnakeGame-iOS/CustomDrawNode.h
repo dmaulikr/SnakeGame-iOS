@@ -18,7 +18,6 @@
 
 - (id) initWithGame:(SnakeGameModel *)g;
 - (void) drawSnake;
-- (void) drawSlowDownPill;
 
 void ccFilledRect(CGPoint v1, CGPoint v2);
 

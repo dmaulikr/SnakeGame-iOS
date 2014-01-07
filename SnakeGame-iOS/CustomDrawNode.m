@@ -41,17 +41,6 @@
     }
 }
 
-- (void) drawSlowDownPill
-{
-    CGPoint start = ccp(game.pill.x, game.pill.y);
-    CGPoint end = ccp(game.pill.x + 20.0, game.pill.y - 20.0);
-    // Use the black color
-    glColor4f(0.0, 0.0, 0.0, 1.0);
-    ccDrawSolidRect(start, end);
-    glColor4f(1.0, 1.0, 1.0, 1.0);
-    ccDrawRect(start, end);
-}
-
 // Draw's everything!
 - (void) draw
 {
@@ -67,7 +56,7 @@
         glLineWidth(2.0f);
     }
     [self drawSnake];
-    [self drawSlowDownPill];
+    //[self drawSlowDownPill];
     // Tell OpenGL to reset the color (to avoid scene transition tint effect)
     glColor4f(1.0, 1.0, 1.0, 1.0);
     // Tell OpenGL that you have finished drawing

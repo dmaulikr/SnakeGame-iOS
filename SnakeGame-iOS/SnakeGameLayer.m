@@ -33,6 +33,8 @@
         [self addChild:bg];
         item = [CCSprite spriteWithFile:@"egg.png"];
         [self addChild:item];
+        pill = [CCSprite spriteWithFile:@"pill.png"];
+        [self addChild:pill];
         CustomDrawNode *node = [[CustomDrawNode alloc] initWithGame:game];
         node.position = ccp(0.0, 0.0);
         [self addChild:node];
@@ -186,6 +188,7 @@
 - (void) updateItems
 {
     item.position = ccp(game.item.x + 12.0, game.item.y - 10.0);
+    pill.position = ccp(game.pill.x + 12.0, game.pill.y - 10.0);
     if (game.paused)
     {
         item.color = ccc3(140, 140, 140);
@@ -244,6 +247,7 @@
 {
     game.pill = ccp(-20.0, -20.0);
     [self unschedule:@selector(removeSlowDownPill)];
+    [self updateItems];
 }
 
 // Draws a barrier around the circumferance of the game area

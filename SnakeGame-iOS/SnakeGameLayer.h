@@ -39,7 +39,7 @@
     CCMenuItem *muteon, *muteoff;
     CCMenuItemToggle *muteButton;
     CCSprite *up, *down, *left, *right;
-    CCSprite *bg, *item;
+    CCSprite *bg, *item, *pill;
 }
 
 +(CCScene *) sceneWithDifficulty:(Difficulty)difficulty;

@@ -351,7 +351,10 @@
     if (snake[0].x == self.item.x && snake[0].y == self.item.y)
     {
         self.points++;
-        [_view removeSlowDownPill];
+        if (self.pill.x)
+        {
+            [_view removeSlowDownPill];
+        }
         // THe game will proceed to the next level after gaining a certain
         // number of points.  The speed will also increase, accordingly.
         if (self.points > 0 && self.points % 5 == 0)
@@ -369,7 +372,6 @@
             [self createItem];
             // Offer one slow down pill at the start of each level
             [self createSlowDownPill];
-            [_view updateItems];
             [_view updateBackground];
         }
         else
