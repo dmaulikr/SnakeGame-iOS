@@ -31,6 +31,8 @@
         bg = [CCSprite spriteWithFile:@"greybg.jpg"];
         bg.position = ccp(160.0, 240.0);
         [self addChild:bg];
+        item = [CCSprite spriteWithFile:@"egg.png"];
+        [self addChild:item];
         CustomDrawNode *node = [[CustomDrawNode alloc] initWithGame:game];
         node.position = ccp(0.0, 0.0);
         [self addChild:node];
@@ -177,6 +179,20 @@
         GLubyte green = (GLubyte) ((bgcolors[(game.level-1) % 6][1] + 0.4) * 255);
         GLubyte blue = (GLubyte) ((bgcolors[(game.level-1) % 6][2] + 0.4) * 255);
         bg.color = ccc3(red, green, blue);
+    }
+}
+
+// Convenience method for updating the locations of the items
+- (void) updateItems
+{
+    item.position = ccp(game.item.x + 12.0, game.item.y - 10.0);
+    if (game.paused)
+    {
+        item.color = ccc3(140, 140, 140);
+    }
+    else
+    {
+        item.color = ccc3(255, 255, 255);
     }
 }
 

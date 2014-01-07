@@ -39,7 +39,7 @@
     CCMenuItem *muteon, *muteoff;
     CCMenuItemToggle *muteButton;
     CCSprite *up, *down, *left, *right;
-    CCSprite *bg;
+    CCSprite *bg, *item;
 }
 
 +(CCScene *) sceneWithDifficulty:(Difficulty)difficulty;
@@ -48,6 +48,7 @@
 - (void) displayAlertWithMessage:(NSString *)message;
 - (void) updateLabels;
 - (void) updateBackground;
+- (void) updateItems;
 - (void) toggleDirectionArrows;
 - (void) removeSlowDownPill;
 - (void) drawBrickWall;

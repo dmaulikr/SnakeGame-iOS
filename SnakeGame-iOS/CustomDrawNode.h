@@ -14,12 +14,10 @@
 @interface CustomDrawNode : CCNode
 {
     SnakeGameModel *game;
-    float bgcolors[6][4];
 }
 
 - (id) initWithGame:(SnakeGameModel *)g;
 - (void) drawSnake;
-- (void) drawItem;
 - (void) drawSlowDownPill;
 
 void ccFilledRect(CGPoint v1, CGPoint v2);

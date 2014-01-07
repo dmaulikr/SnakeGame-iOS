@@ -57,6 +57,7 @@
     [self initializeSnakeArray];
     [self createItem];
     self.pill = ccp(-20.0, -20.0);
+    [_view updateItems];
     [_view updateBackground];
 }
 
@@ -73,6 +74,7 @@
         [_view resumeSchedulerAndActions];
     }
     [_view toggleDirectionArrows];
+    [_view updateItems];
     [_view updateBackground];
 }
 
@@ -367,6 +369,7 @@
             [self createItem];
             // Offer one slow down pill at the start of each level
             [self createSlowDownPill];
+            [_view updateItems];
             [_view updateBackground];
         }
         else
@@ -382,6 +385,7 @@
             [self createItem];
         }
         [_view updateLabels];
+        [_view updateItems];
     }
     // The snake slows down a bit if it collects a slow down pill
     if (snake[0].x == self.pill.x && snake[0].y == self.pill.y)
@@ -391,6 +395,7 @@
             [[SimpleAudioEngine sharedEngine] playEffect:@"pill.wav"];
         }
         [_view removeSlowDownPill];
+        [_view updateItems];
         [self setSpeed:self.speed+acceleration*0.020];
     }
 }

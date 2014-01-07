@@ -15,18 +15,6 @@
     if (self = [super init])
     {
         game = g;
-        // We need to pre-load a list of background colors from a p-list
-        NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"config" ofType:@"plist"]];
-        NSArray *array = (NSArray *)[dictionary valueForKey:@"bgcolors"];
-        for (int i = 0; i < 6; i++)
-        {
-            NSString *color = (NSString *)[array objectAtIndex:i];
-            NSArray *colorComponents = [color componentsSeparatedByString:@","];
-            for (int j = 0; j < 4; j++)
-            {
-                bgcolors[i][j] = [[colorComponents objectAtIndex:j] floatValue];
-            }
-        }
     }
     return self;
 }
@@ -51,25 +39,6 @@
         }
         ccDrawSolidRect(start, end);
     }
-}
-
-- (void) drawItem
-{
-    CGPoint start = ccp(game.item.x, game.item.y);
-    CGPoint end = ccp(game.item.x + 20.0, game.item.y - 20.0);
-    // Use greyscale if the game has been paused.
-    if (game.paused)
-    {
-        glColor4f(0.3, 0.3, 0.3, 1.0);
-    }
-    // Use the red color
-    else
-    {
-        glColor4f(1.0, 0.0, 0.0, 1.0);
-    }
-    ccDrawSolidRect(start, end);
-    glColor4f(1.0, 1.0, 1.0, 1.0);
-    ccDrawRect(start, end);
 }
 
 - (void) drawSlowDownPill
@@ -98,7 +67,6 @@
         glLineWidth(2.0f);
     }
     [self drawSnake];
-    [self drawItem];
     [self drawSlowDownPill];
     // Tell OpenGL to reset the color (to avoid scene transition tint effect)
     glColor4f(1.0, 1.0, 1.0, 1.0);
