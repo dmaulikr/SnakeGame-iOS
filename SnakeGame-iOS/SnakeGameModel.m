@@ -13,7 +13,6 @@
 @synthesize level = _level;
 @synthesize points = _points;
 @synthesize speed = _speed;
-@synthesize startPoint = _startPoint;
 @synthesize item = _item;
 @synthesize pill = _pill;
 @synthesize lengthOfSnake = _lengthOfSnake;
@@ -51,10 +50,20 @@
     self.lives = 10;
     [_view updateLabels];
     self.speed = 0.275;
-    self.startPoint = ccp(20.0*5.0, 20.0*2.0);
     self.direction = FORWARD;
+    // Set the position of the snake's head and initialize
+    // the length of the snake to 1.
+    snake[0] = ccp(20.0*1.0, 20.0*2.0);
+    _lengthOfSnake = 1;
+    [_view growSnake];
+    // Extend the snake further.
     self.lengthOfSnake = 4;
-    [self initializeSnakeArray];
+    // This array needs to be updated repeatedly because each
+    // update only incremets the snake's position by one square.
+    for (int i = 0; i < self.lengthOfSnake; i++)
+    {
+        [self updateSnakeArray];
+    }
     [self createItem];
     self.pill = ccp(-20.0, -20.0);
     [_view updateItems];
@@ -86,21 +95,27 @@
     [_view schedule:@selector(update:) interval:s];
 }
 
+// Grow the snake by the amount specified
+- (void) setLengthOfSnake:(int)lengthOfSnake
+{
+    int increment = lengthOfSnake - _lengthOfSnake;
+    // Only accept a bigger length
+    if (increment)
+    {
+        for (int i = 0; i < increment; i++)
+        {
+            snake[_lengthOfSnake] = ccp(-20.0, -20.0);
+            _lengthOfSnake++;
+            [_view growSnake];
+        }
+    }
+}
+
 // This method was necessary because I didn't know how to declare
 // the snake array as a property without converting it into an NSArray.
 - (CGPoint) getSnakePieceAtIndex:(int)i
 {
     return snake[i];
-}
-
-// Figure out where to position the snake at the start of the game
-// and then construct it there.
-- (void) initializeSnakeArray
-{
-    for (int i = 0; i < self.lengthOfSnake; i++)
-    {
-        snake[i] = ccp(self.startPoint.x-20.0*i, self.startPoint.y);
-    }
 }
 
 // Create a new item in a random location such that it does not
@@ -161,7 +176,7 @@
     [_view scheduleOnce:@selector(removeSlowDownPill) delay:10.0];
 }
 
-// Moves the snake one tile ahead in the current direction
+// Moves the snake ONE tile ahead in the current direction
 - (void) updateSnakeArray
 {
     for (int i = self.lengthOfSnake-1; i > 0; i--)
@@ -192,6 +207,7 @@
         float y = snake[0].y + 20;
         snake[0] = ccp(x, y);
     }
+    [_view updateSnake];
 }
 
 // Spawn snake from one of the walls after dying to give
@@ -256,6 +272,7 @@
             snake[0] = position;
             self.direction = d;
             [_view toggleDirectionArrows];
+            [_view updateSnake];
             break;
         }
     }
@@ -366,7 +383,6 @@
             self.level++;
             [self setSpeed:self.speed-acceleration*0.020];
             // The snake grows one square longer
-            snake[self.lengthOfSnake] = ccp(-20.0, -20.0);
             self.lengthOfSnake++;
             // Spawn the next item
             [self createItem];
@@ -381,7 +397,6 @@
                 [[SimpleAudioEngine sharedEngine] playEffect:@"collect.wav"];
             }
             // The snake grows one square longer
-            snake[self.lengthOfSnake] = ccp(-20.0, -20.0);
             self.lengthOfSnake++;
             // Spawn the next item
             [self createItem];

@@ -24,7 +24,6 @@
 
 #import "cocos2d.h"
 #import "SnakeGameModel.h"
-#import "CustomDrawNode.h"
 
 @interface SnakeGameLayer : CCLayer <UIAlertViewDelegate, SnakeGameDelegate>
 {
@@ -40,6 +39,7 @@
     CCMenuItemToggle *muteButton;
     CCSprite *up, *down, *left, *right;
     CCSprite *bg, *item, *pill;
+    NSMutableArray *snake;
 }
 
 +(CCScene *) sceneWithDifficulty:(Difficulty)difficulty;
@@ -49,6 +49,8 @@
 - (void) updateLabels;
 - (void) updateBackground;
 - (void) updateItems;
+- (void) updateSnake;
+- (void) growSnake;
 - (void) toggleDirectionArrows;
 - (void) removeSlowDownPill;
 - (void) drawBrickWall;

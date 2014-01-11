@@ -129,7 +129,7 @@
 		9852A1E5187BB2DE0044014E /* egg.png in Resources */ = {isa = PBXBuildFile; fileRef = 9852A1E4187BB2DE0044014E /* egg.png */; };
 		9852A1E7187BBEC80044014E /* slowdown.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9852A1E6187BBEC80044014E /* slowdown.wav */; };
 		9852A1E9187BBED50044014E /* oneup.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9852A1E8187BBED50044014E /* oneup.wav */; };
-		989AFB4E1876A1EA0094FDA0 /* CustomDrawNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 989AFB4D1876A1EA0094FDA0 /* CustomDrawNode.m */; };
+		986984A1187F9D9B00C5904D /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 986984A0187F9D9B00C5904D /* ball.png */; };
 		989D3ED01748CA4A00D7FF73 /* theme.wav in Resources */ = {isa = PBXBuildFile; fileRef = 989D3ECF1748CA4A00D7FF73 /* theme.wav */; };
 		989D3ED31748CBF300D7FF73 /* collect.wav in Resources */ = {isa = PBXBuildFile; fileRef = 989D3ED21748CBF300D7FF73 /* collect.wav */; };
 		989D3ED61748CE8C00D7FF73 /* gameover.wav in Resources */ = {isa = PBXBuildFile; fileRef = 989D3ED41748CE8C00D7FF73 /* gameover.wav */; };
@@ -403,8 +403,7 @@
 		9852A1E4187BB2DE0044014E /* egg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = egg.png; path = Resources/egg.png; sourceTree = "<group>"; };
 		9852A1E6187BBEC80044014E /* slowdown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = slowdown.wav; path = Resources/slowdown.wav; sourceTree = "<group>"; };
 		9852A1E8187BBED50044014E /* oneup.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = oneup.wav; path = Resources/oneup.wav; sourceTree = "<group>"; };
-		989AFB4C1876A1EA0094FDA0 /* CustomDrawNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDrawNode.h; sourceTree = "<group>"; };
-		989AFB4D1876A1EA0094FDA0 /* CustomDrawNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomDrawNode.m; sourceTree = "<group>"; };
+		986984A0187F9D9B00C5904D /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ball.png; path = Resources/ball.png; sourceTree = "<group>"; };
 		989D3ECF1748CA4A00D7FF73 /* theme.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = theme.wav; path = Resources/theme.wav; sourceTree = "<group>"; };
 		989D3ED21748CBF300D7FF73 /* collect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = collect.wav; path = Resources/collect.wav; sourceTree = "<group>"; };
 		989D3ED41748CE8C00D7FF73 /* gameover.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = gameover.wav; path = Resources/gameover.wav; sourceTree = "<group>"; };
@@ -496,8 +495,6 @@
 				98093A0818432A9E00817169 /* SnakeGameModel.m */,
 				982C739117420A2200045EFB /* SnakeGameLayer.h */,
 				982C739217420A2200045EFB /* SnakeGameLayer.m */,
-				989AFB4C1876A1EA0094FDA0 /* CustomDrawNode.h */,
-				989AFB4D1876A1EA0094FDA0 /* CustomDrawNode.m */,
 				98F6084E1867C29100D28A6F /* MenuLayer.h */,
 				98F6084F1867C29200D28A6F /* MenuLayer.m */,
 				982C739417420A2200045EFB /* GameConfig.h */,
@@ -524,6 +521,7 @@
 				98A69CDF1855A3A4006E113A /* easy.png */,
 				9852A1E4187BB2DE0044014E /* egg.png */,
 				98A69CE01855A3A4006E113A /* hard.png */,
+				986984A0187F9D9B00C5904D /* ball.png */,
 				98F148E1186CF88D00EC8394 /* down.png */,
 				98F148E2186CF88D00EC8394 /* left.png */,
 				98F148E3186CF88D00EC8394 /* right.png */,
@@ -957,6 +955,7 @@
 				9852A1E7187BBEC80044014E /* slowdown.wav in Resources */,
 				9852A1E9187BBED50044014E /* oneup.wav in Resources */,
 				98FE7E57187BDAD800F3FD18 /* pill.png in Resources */,
+				986984A1187F9D9B00C5904D /* ball.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1068,7 +1067,6 @@
 				982C739317420A2200045EFB /* SnakeGameLayer.m in Sources */,
 				98093A0918432A9E00817169 /* SnakeGameModel.m in Sources */,
 				98F608501867C29200D28A6F /* MenuLayer.m in Sources */,
-				989AFB4E1876A1EA0094FDA0 /* CustomDrawNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

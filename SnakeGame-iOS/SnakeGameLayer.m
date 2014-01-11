@@ -31,46 +31,44 @@
         bg = [CCSprite spriteWithFile:@"greybg.jpg"];
         bg.position = ccp(160.0, 240.0);
         [self addChild:bg];
+        snake = [[NSMutableArray alloc] initWithCapacity:350];
         item = [CCSprite spriteWithFile:@"egg.png"];
-        [self addChild:item];
+        [self addChild:item z:1000];
         pill = [CCSprite spriteWithFile:@"pill.png"];
-        [self addChild:pill];
-        CustomDrawNode *node = [[CustomDrawNode alloc] initWithGame:game];
-        node.position = ccp(0.0, 0.0);
-        [self addChild:node];
+        [self addChild:pill z:1000];
         [self drawBrickWall];
         levelLabel = [CCLabelTTF labelWithString:@"Level Unknown" fontName:@"Marker Felt" fontSize:25];
         levelLabel.color = ccBLACK;
         levelLabel.position =  ccp(160.0, 460.0);
-        [self addChild:levelLabel];
+        [self addChild:levelLabel z:1000];
         pointsLabel = [CCLabelTTF labelWithString:@"Points Unknown" fontName:@"Marker Felt" fontSize:18];
         pointsLabel.color = ccRED;
         pointsLabel.position =  ccp(260.0, 470.0);
-        [self addChild:pointsLabel];
+        [self addChild:pointsLabel z:1000];
         livesLabel = [CCLabelTTF labelWithString:@"Lives Unknown" fontName:@"Marker Felt" fontSize:18];
         livesLabel.color = ccBLUE;
         livesLabel.position =  ccp(260.0, 450.0);
-        [self addChild:livesLabel];
+        [self addChild:livesLabel z:1000];
         up = [CCSprite spriteWithFile:@"up.png"];
         up.position = ccp(160.0, 240.0);
         up.scale = 2.0;
         up.visible = NO;
-        [self addChild:up];
+        [self addChild:up z:1000];
         down = [CCSprite spriteWithFile:@"down.png"];
         down.position = ccp(160.0, 240.0);
         down.scale = 2.0;
         down.visible = NO;
-        [self addChild:down];
+        [self addChild:down z:1000];
         left = [CCSprite spriteWithFile:@"left.png"];
         left.position = ccp(160.0, 240.0);
         left.scale = 2.0;
         left.visible = NO;
-        [self addChild:left];
+        [self addChild:left z:1000];
         right = [CCSprite spriteWithFile:@"right.png"];
         right.position = ccp(160.0, 240.0);
         right.scale = 2.0;
         right.visible = NO;
-        [self addChild:right];
+        [self addChild:right z:1000];
         pauseon = [CCMenuItemImage itemFromNormalImage:@"play.png" selectedImage:@"play.png"];
         pauseoff = [CCMenuItemImage itemFromNormalImage:@"pause.png" selectedImage:@"pause.png"];
         pauseButton = [CCMenuItemToggle itemWithBlock:^(id sender)
@@ -105,7 +103,7 @@
         muteButton.position = ccp(75, 460);
         CCMenu *menu = [CCMenu menuWithItems:pauseButton, muteButton, nil];
         menu.position = CGPointZero;
-        [self addChild:menu];
+        [self addChild:menu z:1000];
         // We need to pre-load a list of background colors from a p-list
         NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"config" ofType:@"plist"]];
         NSArray *array = (NSArray *)[dictionary valueForKey:@"bgcolors"];
@@ -199,6 +197,26 @@
     }
 }
 
+// Convenience method for updating the location of the snake
+- (void) updateSnake
+{
+    for (int i = 0; i < game.lengthOfSnake; i++)
+    {
+        CGPoint p = [game getSnakePieceAtIndex:i];
+        CCSprite *snakePiece = (CCSprite *)[snake objectAtIndex:i];
+        snakePiece.position = ccp(p.x + 10.0, p.y - 10.0);
+    }
+}
+
+// Convenience method for extending the snake's tail by one tile
+- (void) growSnake
+{
+    CCSprite *newPiece = [CCSprite spriteWithFile:@"ball.png"];
+    newPiece.position = [game getSnakePieceAtIndex:game.lengthOfSnake-1];
+    [self addChild:newPiece];
+    [snake addObject:newPiece];
+}
+
 // Displays/hides the direction arrows if paused/running
 - (void) toggleDirectionArrows
 {
@@ -261,7 +279,7 @@
             {
                 CCSprite *stone = [CCSprite spriteWithFile:@"stone.gif"];
                 stone.position = ccp(20*i + 10.0, 20*j - 10.0);
-                [self addChild:stone];
+                [self addChild:stone z:500];
             }
         }
     }

@@ -39,6 +39,8 @@ typedef enum difficultyTypes
 - (void) updateLabels;
 - (void) updateBackground;
 - (void) updateItems;
+- (void) updateSnake;
+- (void) growSnake;
 - (void) toggleDirectionArrows;
 - (void) removeSlowDownPill;
 - (void) displayAlertWithMessage:(NSString *)message;
@@ -55,7 +57,6 @@ typedef enum difficultyTypes
 @property (nonatomic, assign) int level;                // Levels increase as the snake grows
 @property (nonatomic, assign) int points;               // Collecting items gives you points
 @property (nonatomic, assign) float speed;              // This is INVERSELY proportional to the snake's speed!
-@property (nonatomic, assign) CGPoint startPoint;       // The snake's home position
 @property (nonatomic, assign) CGPoint item;             // The collectible item
 @property (nonatomic, assign) CGPoint pill;             // The slow down pill
 @property (nonatomic, assign) int lengthOfSnake;
@@ -69,7 +70,6 @@ typedef enum difficultyTypes
 - (void) spawnSnakeFromBoundary;
 - (void) setSpeed:(float)s;
 - (CGPoint) getSnakePieceAtIndex:(int)i;
-- (void) initializeSnakeArray;
 - (void) createItem;
 - (void) createSlowDownPill;
 - (void) updateSnakeArray;
