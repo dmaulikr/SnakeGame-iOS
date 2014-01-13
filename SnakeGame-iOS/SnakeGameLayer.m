@@ -209,6 +209,8 @@
         CGPoint p = [game getSnakePieceAtIndex:i];
         CCSprite *snakePiece = (CCSprite *)[snake objectAtIndex:i];
         snakePiece.position = ccp(p.x + 10.0, p.y - 10.0);
+        snakePiece.color = ccc3(255*(1-((float)i/(game.lengthOfSnake-1))), 255,
+                                255*(1-((float)i/(game.lengthOfSnake-1))));
     }
 }
 
