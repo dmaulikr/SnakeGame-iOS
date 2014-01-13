@@ -37,7 +37,7 @@ typedef enum difficultyTypes
 - (void) pauseSchedulerAndActions;
 - (void) resumeSchedulerAndActions;
 - (void) updateLabels;
-- (void) updateBackground;
+- (void) updateBackgroundWithFlash:(BOOL)flash;
 - (void) updateItems;
 - (void) updateSnake;
 - (void) growSnake;

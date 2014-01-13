@@ -67,7 +67,7 @@
     [self createItem];
     self.pill = ccp(-20.0, -20.0);
     [_view updateItems];
-    [_view updateBackground];
+    [_view updateBackgroundWithFlash:NO];
 }
 
 // Pauses/continues the game
@@ -84,7 +84,7 @@
     }
     [_view toggleDirectionArrows];
     [_view updateItems];
-    [_view updateBackground];
+    [_view updateBackgroundWithFlash:NO];
 }
 
 // Change the speed of the snake's motion by doing more/less frequent updates.
@@ -388,7 +388,7 @@
             [self createItem];
             // Offer one slow down pill at the start of each level
             [self createSlowDownPill];
-            [_view updateBackground];
+            [_view updateBackgroundWithFlash:YES];
         }
         else
         {

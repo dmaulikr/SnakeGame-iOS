@@ -165,8 +165,12 @@
 }
 
 // Convenience method for updating the background color
-- (void) updateBackground
+- (void) updateBackgroundWithFlash:(BOOL)flash
 {
+    if (flash)
+    {
+        [bg runAction:[CCBlink actionWithDuration:0.5 blinks:5]];
+    }
     // Use greyscale if the game has been paused.
     if (game.paused)
     {

@@ -47,7 +47,7 @@
 -(id) initWithDifficulty:(Difficulty)difficulty;
 - (void) displayAlertWithMessage:(NSString *)message;
 - (void) updateLabels;
-- (void) updateBackground;
+- (void) updateBackgroundWithFlash:(BOOL)flash;
 - (void) updateItems;
 - (void) updateSnake;
 - (void) growSnake;
